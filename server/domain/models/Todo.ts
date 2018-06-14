@@ -1,7 +1,7 @@
 export default class Todo {
-  id: string;
-  text: string;
-  complete: boolean;
+  public id: string;
+  public text: string;
+  public complete: boolean;
 
   constructor({
     id,

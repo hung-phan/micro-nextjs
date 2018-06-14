@@ -1,6 +1,6 @@
+import { IncomingMessage, ServerResponse } from "http";
 import { send } from "micro";
 import { get } from "microrouter";
-import { IncomingMessage, ServerResponse } from "http";
 import { TodoDAO } from "../../domain/repositories";
 
 export default [

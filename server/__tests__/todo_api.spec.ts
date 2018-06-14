@@ -1,10 +1,14 @@
-import * as listen from "test-listen";
+import * as request from "supertest";
 import { utils } from "../helpers";
 
 describe("todo_api", () => {
-  it("should expose todo api", async () => {
-    const serverUrl = await listen(utils.createServer());
-
-    console.log(serverUrl);
+  it("should return 10 elements of Todo", () => {
+    return request(utils.createServer())
+      .get("/api/todo")
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(res => {
+        expect(res.body.length).toEqual(10);
+      });
   });
 });
