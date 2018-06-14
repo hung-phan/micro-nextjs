@@ -1,9 +1,9 @@
-import listen from "test-listen";
-import { createServer } from "../helpers/utils";
+import * as listen from "test-listen";
+import { utils } from "../helpers";
 
 describe("todo_api", () => {
   it("should expose todo api", async () => {
-    const serverUrl = await listen(createServer());
+    const serverUrl = await listen(utils.createServer());
 
     console.log(serverUrl);
   });
