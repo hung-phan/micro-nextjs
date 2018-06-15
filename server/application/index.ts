@@ -1,7 +1,4 @@
-import { get, router } from "microrouter";
-import { server } from "../infrastructure";
-import apiRoutes from "./api";
+import createHTTPServer from "./create_http_server";
+import ServerApplication from "./server_application";
 
-const requestHandler = router(...apiRoutes, get("/*", server.handler));
-
-export { requestHandler };
+export { createHTTPServer, ServerApplication };

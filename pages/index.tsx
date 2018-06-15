@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import * as React from "react";
 
 export default () => (
   <ul>

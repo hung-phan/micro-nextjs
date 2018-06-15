@@ -1,14 +1,13 @@
-import * as micro from "micro";
-import { requestHandler } from "./application";
-import { config, server } from "./infrastructure";
+import { createHTTPServer, ServerApplication } from "./application";
+import { ConfigManager } from "./infrastructure/service";
 
-server.app.prepare().then(() => {
-  micro(requestHandler).listen(config.PORT, err => {
+ServerApplication.prepare().then(() => {
+  createHTTPServer().listen(ConfigManager.PORT, err => {
     if (err) {
       throw err;
     }
 
     // tslint:disable-next-line
-    console.log(`> Ready on http://localhost:${config.PORT}`);
+    console.log(`> Ready on http://localhost:${ConfigManager.PORT}`);
   });
 });
