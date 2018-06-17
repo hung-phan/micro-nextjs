@@ -1,7 +1,7 @@
-import { createHTTPServer, ServerApplication } from "./application";
+import { createHTTPServer, NextApplication } from "./application";
 import { ConfigManager } from "./infrastructure/service";
 
-ServerApplication.prepare().then(() => {
+NextApplication.prepare().then(() => {
   createHTTPServer().listen(ConfigManager.PORT, err => {
     if (err) {
       throw err;

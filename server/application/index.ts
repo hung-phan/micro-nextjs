@@ -1,4 +1,4 @@
 import createHTTPServer from "./create_http_server";
-import ServerApplication from "./server_application";
+import NextApplication from "./next_application";
 
-export { createHTTPServer, ServerApplication };
+export { createHTTPServer, NextApplication };
