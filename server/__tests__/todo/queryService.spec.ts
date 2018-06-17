@@ -1,7 +1,7 @@
 import * as request from "supertest";
-import { httpServer } from "../application";
+import { httpServer } from "../../application";
 
-describe("todo_api", () => {
+describe("Todo.queryService", () => {
   it("should return 10 elements of Todo", () => {
     return request(httpServer)
       .get("/api/todo")
