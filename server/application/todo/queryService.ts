@@ -1,8 +1,8 @@
-import { IncomingMessage, MicroIncomingMessage, ServerResponse } from "http";
+import { MicroIncomingMessage, ServerResponse } from "http";
 import { send } from "micro";
 import { TodoRepository } from "../../infrastructure/persistence";
 
-export const getAll = async (_: IncomingMessage, res: ServerResponse) => {
+export const getAll = async (_: MicroIncomingMessage, res: ServerResponse) => {
   send(res, 200, await TodoRepository.getAll());
 };
 
