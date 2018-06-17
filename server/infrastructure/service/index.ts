@@ -1,3 +1,3 @@
-import * as ConfigManager from "./config_manager";
+import * as configManager from "./configManager";
 
-export { ConfigManager };
+export { configManager };

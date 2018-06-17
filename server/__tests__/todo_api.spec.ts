@@ -1,9 +1,9 @@
 import * as request from "supertest";
-import { createHTTPServer } from "../application";
+import { httpServer } from "../application";
 
 describe("todo_api", () => {
   it("should return 10 elements of Todo", () => {
-    return request(createHTTPServer())
+    return request(httpServer)
       .get("/api/todo")
       .expect('Content-Type', /json/)
       .expect(200)

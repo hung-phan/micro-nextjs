@@ -1,13 +1,13 @@
-import { createHTTPServer, NextApplication } from "./application";
-import { ConfigManager } from "./infrastructure/service";
+import { httpServer, nextApplication } from "./application";
+import { configManager } from "./infrastructure/service";
 
-NextApplication.prepare().then(() => {
-  createHTTPServer().listen(ConfigManager.PORT, err => {
+nextApplication.prepare().then(() => {
+  httpServer.listen(configManager.PORT, err => {
     if (err) {
       throw err;
     }
 
     // tslint:disable-next-line
-    console.log(`> Ready on http://localhost:${ConfigManager.PORT}`);
+    console.log(`> Ready on http://localhost:${configManager.PORT}`);
   });
 });

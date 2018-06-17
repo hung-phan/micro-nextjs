@@ -1,3 +1,3 @@
-import * as QueryService from "./query_service";
+import * as queryService from "./queryService";
 
-export { QueryService };
+export { queryService };
