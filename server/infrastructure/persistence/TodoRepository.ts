@@ -21,4 +21,5 @@ export const all = (): Promise<Todo[]> =>
 
 export const getById = (id: string): Promise<Todo> => dataloader.load(id);
 
-export const getByIds = (ids: string[]): Promise<Todo[]> => dataloader.loadMany(ids);
+export const getByIds = (ids: string[]): Promise<Todo[]> =>
+  dataloader.loadMany(ids);

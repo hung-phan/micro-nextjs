@@ -8,9 +8,9 @@ export const nextApplication = next({
   dev: configManager.NODE_ENV !== "production"
 });
 
-export const httpServer = micro(router(
-  withNamespace("/api")(
-    get("/todo", Todo.queryService.getAll)
-  ),
-  get("/*", nextApplication.getRequestHandler())
-));
+export const httpServer = micro(
+  router(
+    withNamespace("/api")(get("/todo", Todo.queryService.getAll)),
+    get("/*", nextApplication.getRequestHandler())
+  )
+);
