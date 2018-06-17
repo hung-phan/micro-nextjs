@@ -10,7 +10,10 @@ export const nextApplication = next({
 
 export const httpServer = micro(
   router(
-    withNamespace("/api")(get("/todo", Todo.queryService.getAll)),
+    withNamespace("/api")(
+      get("/todo", Todo.queryService.getAll),
+      get("/todo/:id", Todo.queryService.getById)
+    ),
     get("/*", nextApplication.getRequestHandler())
   )
 );

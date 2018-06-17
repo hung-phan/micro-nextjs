@@ -1,7 +1,11 @@
-import { IncomingMessage, ServerResponse } from "http";
+import { IncomingMessage, MicroIncomingMessage, ServerResponse } from "http";
 import { send } from "micro";
 import { TodoRepository } from "../../infrastructure/persistence";
 
 export const getAll = async (_: IncomingMessage, res: ServerResponse) => {
-  send(res, 200, await TodoRepository.all());
+  send(res, 200, await TodoRepository.getAll());
+};
+
+export const getById = async (req: MicroIncomingMessage, res: ServerResponse) => {
+  send(res, 200, await TodoRepository.getById(req.params.id));
 };
