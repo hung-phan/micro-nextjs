@@ -10,7 +10,7 @@ export const getBaseUrl = (): string => {
   const { PORT } = process.env;
 
   if (!PORT) {
-    throw new Error("Missing 'process.env.PORT'.");
+    throw new Error("Missing 'process.env.PORT'");
   }
 
   return `http://localhost:${PORT}`;
@@ -28,7 +28,6 @@ export const create = (baseUrl: string) => (
     ...(options && options.headers)
   };
 
-  console.log(`${baseUrl}${url}`);
   return fetch(`${baseUrl}${url}`, {
     headers,
     mode: baseUrl ? "cors" : "same-origin",

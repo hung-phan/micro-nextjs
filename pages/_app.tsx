@@ -1,3 +1,11 @@
+if (process.env.ENVIRONMENT === "client") {
+  // tslint:disable-next-line
+  require("font-awesome/scss/font-awesome.scss");
+
+  // tslint:disable-next-line
+  require("bootstrap/scss/bootstrap.scss");
+}
+
 import withRedux from "next-redux-wrapper";
 import App, { Container } from "next/app";
 import * as React from "react";
