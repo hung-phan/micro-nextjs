@@ -5,15 +5,15 @@ import omit from "lodash/omit";
 export const getBaseUrl = (): string => {
   if (process.env.ENVIRONMENT === "client") {
     return "";
+  } else {
+    const { PORT } = process.env;
+
+    if (!PORT) {
+      throw new Error("Missing 'process.env.PORT'");
+    }
+
+    return `http://localhost:${PORT}`;
   }
-
-  const { PORT } = process.env;
-
-  if (!PORT) {
-    throw new Error("Missing 'process.env.PORT'");
-  }
-
-  return `http://localhost:${PORT}`;
 };
 
 // Default options for the Fetch API
