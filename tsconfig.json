@@ -13,10 +13,6 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./@types"
-    ],
     "lib": [
       "dom",
       "es2015",

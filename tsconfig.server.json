@@ -4,5 +4,5 @@
     "module": "commonjs",
     "outDir": ".next_server/"
   },
-  "include": ["server/**/*.ts", "server/**/*.tsx"]
+  "include": ["@types/**/*.ts", "server/**/*.ts", "server/**/*.tsx"]
 }
