@@ -2,17 +2,5 @@
   "presets": [
     "next/babel",
     "@zeit/next-typescript/babel"
-  ],
-  "env": {
-    "development": {
-      "plugins": [
-        "inline-dotenv"
-      ]
-    },
-    "production": {
-      "plugins": [
-        "transform-inline-environment-variables"
-      ]
-    }
-  }
+  ]
 }

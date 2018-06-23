@@ -38,8 +38,6 @@
     "@zeit/next-typescript": "1.1.0",
     "babel-core": "^7.0.0-beta.51",
     "babel-jest": "^23.0.1",
-    "babel-plugin-inline-dotenv": "^1.1.2",
-    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "env-cmd": "^8.0.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",

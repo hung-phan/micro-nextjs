@@ -9,6 +9,10 @@ module.exports = _.flow(
   withCss,
   withSass
 )({
+  // runtime config
+  serverRuntimeConfig: {
+    IS_SERVER: true
+  },
   webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.(gif|jpg|jpeg|png|svg|ttf|eot|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -23,6 +27,7 @@ module.exports = _.flow(
       ]
     });
 
+    // compile time config
     config.plugins.push(
       new webpack.DefinePlugin({
         "process.env.ENVIRONMENT": JSON.stringify(

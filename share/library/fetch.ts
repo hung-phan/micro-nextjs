@@ -1,11 +1,12 @@
 /* global process */
 import * as fetch from "isomorphic-fetch";
 import omit from "lodash/omit";
+import getConfig from "next/config";
+
+const { serverRuntimeConfig } = getConfig();
 
 export const getBaseUrl = (): string => {
-  if (process.env.ENVIRONMENT === "client") {
-    return "";
-  } else {
+  if (serverRuntimeConfig.IS_SERVER) {
     const { PORT } = process.env;
 
     if (!PORT) {
@@ -13,6 +14,8 @@ export const getBaseUrl = (): string => {
     }
 
     return `http://localhost:${PORT}`;
+  } else {
+    return "";
   }
 };
 
