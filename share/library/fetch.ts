@@ -1,23 +1,11 @@
 /* global process */
 import * as fetch from "isomorphic-fetch";
 import omit from "lodash/omit";
-import getConfig from "next/config";
 
-const { serverRuntimeConfig } = getConfig();
-
-export const getBaseUrl = (): string => {
-  if (serverRuntimeConfig.IS_SERVER) {
-    const { PORT } = process.env;
-
-    if (!PORT) {
-      throw new Error("Missing 'process.env.PORT'");
-    }
-
-    return `http://localhost:${PORT}`;
-  } else {
-    return "";
-  }
-};
+const BASE_URL =
+  process.env.ENVIRONMENT === "client"
+    ? ""
+    : `http://localhost:${process.env.PORT}`;
 
 // Default options for the Fetch API
 // https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch
@@ -39,4 +27,4 @@ export const create = (baseUrl: string) => (
   });
 };
 
-export default create(getBaseUrl());
+export default create(BASE_URL);
