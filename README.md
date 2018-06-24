@@ -33,13 +33,6 @@ $ npm run build
 $ npm start
 ```
 
-### Docker container
-
-```bash
-$ docker-compose build
-$ docker-compose up
-```
-
 Access `http://localhost:3000` to see the application
 
 ## QA
