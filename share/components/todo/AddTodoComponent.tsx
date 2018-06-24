@@ -1,7 +1,7 @@
 import * as React from "react";
 import { actions as todoActions } from "./logicBundle";
 
-export default class TodosAdd extends React.PureComponent<{ addTodo: typeof todoActions.addTodo }> {
+export default class AddTodoComponent extends React.PureComponent<{ addTodo: typeof todoActions.addTodo }> {
   private readonly inputRef: React.RefObject<HTMLInputElement>;
 
   constructor(props) {

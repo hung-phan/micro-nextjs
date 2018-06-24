@@ -4,7 +4,7 @@ import * as React from "react";
 import { TodoModel } from "../../../domain/model";
 import TodoComponent from "../TodoComponent";
 
-describe("Component: TodoComponent", () => {
+describe("todo/TodoComponent", () => {
   const todo: TodoModel.Todo = new TodoModel.Todo({
     id: "0",
     text: "Todo",
@@ -14,11 +14,15 @@ describe("Component: TodoComponent", () => {
   it("should call 'removeTodo' when click on the delete button", () => {
     const removeTodo = jest.fn();
     const component = mount(
-      <TodoComponent
-        todo={todo}
-        removeTodo={removeTodo}
-        completeTodo={noop}
-      />
+      <table className="table">
+        <tbody>
+          <TodoComponent
+            todo={todo}
+            removeTodo={removeTodo}
+            completeTodo={noop}
+          />
+        </tbody>
+      </table>
     );
     const removeButton = component.find(".btn-danger");
     removeButton.simulate("click");

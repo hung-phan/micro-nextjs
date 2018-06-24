@@ -1,26 +1,21 @@
-import React from "react";
 import { render } from "enzyme";
+import * as React from "react";
 import { Provider } from "react-redux";
+import TodoList from "..";
 import createStore from "../../../createStore";
-import todosReducer, {
-  mountPoint as todosMountPoint,
-  setTodos
-} from "../logicBundle";
-import injectReducers from "../../../library/injectReducers";
-import Todos from "..";
+import { actions as todoActions } from "../logicBundle";
 
-describe("Component: Todos", () => {
+describe("todo/TodoList", () => {
   let store;
 
   beforeEach(() => {
     store = createStore();
-    injectReducers(store, { [todosMountPoint]: todosReducer });
     store.dispatch(
-      setTodos([
-        { text: "Todo 1", complete: false },
-        { text: "Todo 2", complete: false },
-        { text: "Todo 3", complete: false },
-        { text: "Todo 4", complete: false }
+      todoActions.setTodos([
+        { id: "1", text: "Todo 1", complete: false },
+        { id: "2", text: "Todo 2", complete: false },
+        { id: "3", text: "Todo 3", complete: false },
+        { id: "4", text: "Todo 4", complete: false }
       ])
     );
   });
@@ -29,9 +24,7 @@ describe("Component: Todos", () => {
     expect(
       render(
         <Provider key="provider" store={store}>
-          <div>
-            <Todos />
-          </div>
+          <TodoList />
         </Provider>
       )
     ).toMatchSnapshot();
