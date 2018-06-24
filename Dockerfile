@@ -16,7 +16,7 @@ RUN chmod +x /usr/local/bin/dumb-init
 COPY package.json package-lock.json ./
 RUN npm install --production
 COPY . .
-COPY --from=builder /opt/application/.next ./next
-COPY --from=builder /opt/application/.next_server ./next_server
+COPY --from=builder /opt/application/.next .next
+COPY --from=builder /opt/application/.next_server .next_server
 
 CMD ["dumb-init", "npm", "start"]

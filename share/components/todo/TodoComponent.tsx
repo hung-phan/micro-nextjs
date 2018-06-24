@@ -3,7 +3,6 @@ import { TodoModel } from "../../domain/model";
 import { actions as todoActions } from "./logicBundle";
 
 class TodoComponent extends React.Component<{
-  index: number;
   todo: TodoModel.Todo;
   completeTodo: typeof todoActions.completeTodo;
   removeTodo: typeof todoActions.removeTodo;
@@ -18,7 +17,7 @@ class TodoComponent extends React.Component<{
     return (
       <tr>
         <td>
-          <span>{this.props.index + 1}</span>
+          <span>{this.props.todo.id}</span>
         </td>
         <td>{text}</td>
         <td>
@@ -44,11 +43,11 @@ class TodoComponent extends React.Component<{
   }
 
   private completeTodo = () => {
-    this.props.completeTodo(this.props.index);
+    this.props.completeTodo(this.props.todo.id);
   };
 
   private removeTodo = () => {
-    this.props.removeTodo(this.props.index);
+    this.props.removeTodo(this.props.todo.id);
   };
 }
 

@@ -1,5 +1,6 @@
 import micro from "micro";
-import { get, router, withNamespace } from "microrouter";
+import { handleErrors } from "micro-boom";
+import { del, get, post, put, router, withNamespace } from "microrouter";
 import * as next from "next";
 import { configManager } from "../infrastructure/service";
 import * as Todo from "./todo";
@@ -9,11 +10,16 @@ export const nextApplication = next({
 });
 
 export const httpServer = micro(
-  router(
-    withNamespace("/api")(
-      get("/todo", Todo.queryService.getAll),
-      get("/todo/:id", Todo.queryService.getById)
-    ),
-    get("/*", nextApplication.getRequestHandler())
+  handleErrors(
+    router(
+      withNamespace("/api/todo")(
+        post("/", Todo.queryService.create),
+        get("/", Todo.queryService.getAll),
+        get("/:id", Todo.queryService.getById),
+        put("/:id", Todo.queryService.update),
+        del("/:id", Todo.queryService.remove),
+      ),
+      get("/*", nextApplication.getRequestHandler())
+    )
   )
 );

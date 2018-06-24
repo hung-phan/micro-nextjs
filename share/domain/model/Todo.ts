@@ -1,3 +1,5 @@
+import { struct } from "superstruct";
+
 export interface ITodo {
   id?: string;
   text: string;
@@ -15,3 +17,20 @@ export class Todo implements ITodo {
     this.complete = complete;
   }
 }
+
+export interface ITodoUpdate {
+  text?: string;
+  complete?: boolean;
+}
+
+export const validator = {
+  Todo: struct({
+    id: "string?",
+    text: "string",
+    complete: "boolean"
+  }),
+  TodoUpdate: struct({
+    text: "string?",
+    complete: "boolean?"
+  })
+};

@@ -5,8 +5,9 @@ import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import rootReducer from "./rootReducer";
 
-const middlewares = [thunkMiddleware];
-const enhancers = [];
+export const middlewares = [thunkMiddleware];
+
+export const enhancers = [];
 
 if (process.env.ENVIRONMENT === "client") {
   if (process.env.NODE_ENV === "development") {

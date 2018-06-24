@@ -9,9 +9,11 @@ const COMPLETE_TODO = "todos/COMPLETE_TODO";
 const SET_TODOS = "todos/SET_TODOS";
 
 export const actions = {
-  addTodo: createAction(ADD_TODO, resolve => (text: string) => resolve(text)),
-  removeTodo: createAction(REMOVE_TODO, resolve => (id: number) => resolve(id)),
-  completeTodo: createAction(COMPLETE_TODO, resolve => (id: number) =>
+  addTodo: createAction(ADD_TODO, resolve => (text: string) =>
+    resolve(text)
+  ),
+  removeTodo: createAction(REMOVE_TODO, resolve => (id: string) => resolve(id)),
+  completeTodo: createAction(COMPLETE_TODO, resolve => (id: string) =>
     resolve(id)
   ),
   setTodos: createAction(SET_TODOS, resolve => (todoData: TodoModel.ITodo[]) =>

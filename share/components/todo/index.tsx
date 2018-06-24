@@ -49,10 +49,9 @@ export class TodoListComponent extends React.Component<{
           <div className="col-md-12">
             <table className="table">
               <tbody>
-                {todos.map((todo: TodoModel.Todo, index: number) => (
+                {todos.map((todo: TodoModel.Todo) => (
                   <TodoComponent
                     key={todo.id}
-                    index={index}
                     todo={todo}
                     completeTodo={actions.completeTodo}
                     removeTodo={actions.removeTodo}
