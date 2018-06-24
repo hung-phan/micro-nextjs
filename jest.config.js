@@ -5,7 +5,8 @@ module.exports = {
   snapshotSerializers: ["enzyme-to-json/serializer"],
   testRegex: TEST_REGEX,
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.ts$": "ts-jest",
+    "^.+\\.tsx$": "babel-jest",
   },
   testPathIgnorePatterns: [
     "<rootDir>/.next/",
