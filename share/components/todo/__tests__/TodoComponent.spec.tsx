@@ -30,19 +30,22 @@ describe("todo/TodoComponent", () => {
     expect(removeTodo.mock.calls[0][0]).toBe("0");
   });
 
-  // it("should call 'completeTodo' when click on the complete button", () => {
-  //   const completeTodo = jest.fn();
-  //   const component = mount(
-  //     <TodosBody todos={todos} removeTodo={noop} completeTodo={completeTodo} />
-  //   );
-  //   const trComponents = component.find("tr");
-  //
-  //   trComponents.forEach((tr, index) => {
-  //     const completeButton = tr.find(".btn-success");
-  //     completeButton.simulate("click");
-  //
-  //     expect(completeTodo.mock.calls[index][0]).toBe(index);
-  //   });
-  //   expect(completeTodo.mock.calls.length).toEqual(todos.length);
-  // });
+  it("should call 'completeTodo' when click on the complete button", () => {
+    const completeTodo = jest.fn();
+    const component = mount(
+      <table className="table">
+        <tbody>
+        <TodoComponent
+          todo={todo}
+          removeTodo={noop}
+          completeTodo={completeTodo}
+        />
+        </tbody>
+      </table>
+    );
+    const completeButton = component.find(".btn-success");
+    completeButton.simulate("click");
+
+    expect(completeTodo.mock.calls[0][0]).toBe("0");
+  });
 });
