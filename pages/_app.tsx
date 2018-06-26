@@ -1,8 +1,5 @@
 if (process.env.ENVIRONMENT === "client") {
-  // tslint:disable-next-line
   require("font-awesome/scss/font-awesome.scss");
-
-  // tslint:disable-next-line
   require("bootstrap/scss/bootstrap.scss");
 }
 

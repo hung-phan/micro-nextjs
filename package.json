@@ -10,6 +10,7 @@
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.2",
     "@types/reselect": "^2.2.0",
+    "@types/styled-jsx": "^2.2.3",
     "@zeit/next-css": "^0.2.0",
     "@zeit/next-sass": "^0.2.0",
     "@zeit/next-typescript": "1.1.0",

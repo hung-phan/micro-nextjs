@@ -24,7 +24,13 @@ export class TodoListComponent extends React.Component<{
   todos: TodosState;
   actions: typeof todoActions;
 }> {
-  public static async getInitialProps({ pathname, store }: { pathname: string, store: Store }) {
+  public static async getInitialProps({
+    pathname,
+    store
+  }: {
+    pathname: string;
+    store: Store;
+  }) {
     await fetch("/api/todo")
       .then(res => res.json())
       .then((todoData: TodoModel.ITodo[]) => {
@@ -67,6 +73,11 @@ export class TodoListComponent extends React.Component<{
             </Link>
           </div>
         </div>
+        <style jsx>{`
+          .table {
+            margin-top: 20px;
+          }
+        `}</style>
       </div>
     );
   }
