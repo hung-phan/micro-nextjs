@@ -4,6 +4,7 @@
   "dependencies": {
     "@types/boom": "^7.2.0",
     "@types/isomorphic-fetch": "^0.0.34",
+    "@types/lodash": "^4.14.110",
     "@types/next": "^6.0.2",
     "@types/node": "^10.3.4",
     "@types/react": "^16.4.1",
@@ -37,7 +38,9 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
     "superstruct": "^0.5.4",
-    "typesafe-actions": "^2.0.4"
+    "typescript-fsa": "^3.0.0-beta-2",
+    "typescript-fsa-reducers": "^0.4.5",
+    "typescript-fsa-redux-thunk": "^2.0.0-beta.11"
   },
   "devDependencies": {
     "@types/jest": "^23.1.1",
