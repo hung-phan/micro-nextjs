@@ -42,13 +42,9 @@ class TodoComponent extends React.Component<{
     );
   }
 
-  private complete = () => {
-    this.props.complete(this.props.todo.id);
-  };
+  private complete = () => this.props.complete(this.props.todo.id);
 
-  private remove = () => {
-    this.props.remove(this.props.todo.id);
-  };
+  private remove = () => this.props.remove(this.props.todo.id);
 }
 
 export default TodoComponent;
