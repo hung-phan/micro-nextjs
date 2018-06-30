@@ -1,6 +1,6 @@
 /* global process */
 import * as fetch from "isomorphic-fetch";
-import omit from "lodash/omit";
+import * as _ from "lodash";
 
 const BASE_URL =
   process.env.ENVIRONMENT === "client"
@@ -23,7 +23,7 @@ export const create = (baseUrl: string) => (
     headers,
     mode: baseUrl ? "cors" : "same-origin",
     credentials: baseUrl ? "include" : "same-origin",
-    ...omit(options, "headers")
+    ..._.omit(options, "headers")
   });
 };
 
