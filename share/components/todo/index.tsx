@@ -1,41 +1,31 @@
 import Link from "next/link";
 import * as React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators, Dispatch, Store } from "redux";
-import { TodoModel } from "../../domain/model";
-import fetch from "../../library/fetch";
+import { AnyAction, bindActionCreators, Dispatch, Store } from "redux";
+import { ThunkDispatch } from "redux-thunk";
+import { IApplicationState, TodoState } from "../../state";
 import AddTodoComponent from "./AddTodoComponent";
 import {
   actions as todoActions,
-  selectors as todoSelectors,
-  TodosState
+  bindActions as bindTodoActions,
+  selectors as todoSelectors
 } from "./logicBundle";
 import TodoComponent from "./TodoComponent";
 
-const mapStateToProps = state => ({
-  todos: todoSelectors.getTodos(state)
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  actions: bindActionCreators(todoActions, dispatch)
-});
-
 export class TodoListComponent extends React.Component<{
-  todos: TodosState;
-  actions: typeof todoActions;
+  todos: TodoState;
+  actions: typeof bindTodoActions;
 }> {
   public static async getInitialProps({
     pathname,
     store
   }: {
     pathname: string;
-    store: Store;
+    store: Store<IApplicationState, AnyAction>;
   }) {
-    await fetch("/api/todo")
-      .then(res => res.json())
-      .then((todoData: TodoModel.ITodo[]) => {
-        store.dispatch(todoActions.setTodos(todoData));
-      });
+    await (store.dispatch as ThunkDispatch<IApplicationState, any, AnyAction>)(
+      todoActions.fetch.action()
+    );
 
     return { pathname };
   }
@@ -50,17 +40,17 @@ export class TodoListComponent extends React.Component<{
             <h1>Todos List</h1>
           </div>
 
-          <AddTodoComponent addTodo={actions.addTodo} />
+          <AddTodoComponent addTodo={actions.create} />
 
           <div className="col-md-12">
             <table className="table">
               <tbody>
-                {todos.map((todo: TodoModel.Todo) => (
+                {todos.map(todo => (
                   <TodoComponent
                     key={todo.id}
                     todo={todo}
-                    completeTodo={actions.completeTodo}
-                    removeTodo={actions.removeTodo}
+                    complete={actions.complete}
+                    remove={actions.remove}
                   />
                 ))}
               </tbody>
@@ -84,6 +74,10 @@ export class TodoListComponent extends React.Component<{
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  (state: IApplicationState) => ({
+    todos: todoSelectors.getTodos(state)
+  }),
+  (dispatch: Dispatch) => ({
+    actions: bindActionCreators(bindTodoActions, dispatch)
+  })
 )(TodoListComponent);

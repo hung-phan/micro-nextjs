@@ -3,7 +3,7 @@ import { TodoModel } from "../../../domain/model";
 import { actions, reducer } from "../logicBundle";
 
 describe("todo/logicBundle", () => {
-  describe("Reducer", () => {
+  describe("reducer", () => {
     const todos = [
       new TodoModel.Todo({
         id: "1",

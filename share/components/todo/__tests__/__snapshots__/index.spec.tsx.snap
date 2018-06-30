@@ -2,15 +2,17 @@
 
 exports[`todo/TodoList should render component 1`] = `
 <div
-  class="container"
+  class="jsx-3168813922 container"
 >
   <div
-    class="row"
+    class="jsx-3168813922 row"
   >
     <div
-      class="col-md-12"
+      class="jsx-3168813922 col-md-12"
     >
-      <h1>
+      <h1
+        class="jsx-3168813922"
+      >
         Todos List
       </h1>
     </div>
@@ -38,12 +40,14 @@ exports[`todo/TodoList should render component 1`] = `
       </div>
     </div>
     <div
-      class="col-md-12"
+      class="jsx-3168813922 col-md-12"
     >
       <table
-        class="table"
+        class="jsx-3168813922 table"
       >
-        <tbody>
+        <tbody
+          class="jsx-3168813922"
+        >
           <tr>
             <td>
               <span>
@@ -176,9 +180,10 @@ exports[`todo/TodoList should render component 1`] = `
       </table>
     </div>
     <div
-      class="col-md-12"
+      class="jsx-3168813922 col-md-12"
     >
       <a
+        class="jsx-3168813922"
         href="/static-page"
       >
         Go to static page

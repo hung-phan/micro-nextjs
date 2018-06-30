@@ -18,8 +18,8 @@ describe("todo/TodoComponent", () => {
         <tbody>
           <TodoComponent
             todo={todo}
-            removeTodo={removeTodo}
-            completeTodo={noop}
+            remove={removeTodo}
+            complete={noop as any}
           />
         </tbody>
       </table>
@@ -37,8 +37,8 @@ describe("todo/TodoComponent", () => {
         <tbody>
         <TodoComponent
           todo={todo}
-          removeTodo={noop}
-          completeTodo={completeTodo}
+          remove={noop as any}
+          complete={completeTodo}
         />
         </tbody>
       </table>

@@ -1,7 +1,9 @@
 import * as React from "react";
-import { actions as todoActions } from "./logicBundle";
+import { bindActions as bindTodoActions } from "./logicBundle";
 
-export default class AddTodoComponent extends React.PureComponent<{ addTodo: typeof todoActions.addTodo }> {
+export default class AddTodoComponent extends React.PureComponent<{
+  addTodo: typeof bindTodoActions.create;
+}> {
   private readonly inputRef: React.RefObject<HTMLInputElement>;
 
   constructor(props) {
@@ -34,10 +36,11 @@ export default class AddTodoComponent extends React.PureComponent<{ addTodo: typ
     );
   }
 
-  private addTodo = () => {
+  private addTodo = async () => {
     const element = this.inputRef.current;
 
-    this.props.addTodo(element.value);
+    await this.props.addTodo(element.value);
+
     element.value = "";
   };
 }

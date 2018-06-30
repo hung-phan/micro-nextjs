@@ -11,12 +11,14 @@ describe("todo/TodoList", () => {
   beforeEach(() => {
     store = createStore();
     store.dispatch(
-      todoActions.setTodos([
-        { id: "1", text: "Todo 1", complete: false },
-        { id: "2", text: "Todo 2", complete: false },
-        { id: "3", text: "Todo 3", complete: false },
-        { id: "4", text: "Todo 4", complete: false }
-      ])
+      todoActions.fetch.async.done({
+        result: [
+          { id: "1", text: "Todo 1", complete: false },
+          { id: "2", text: "Todo 2", complete: false },
+          { id: "3", text: "Todo 3", complete: false },
+          { id: "4", text: "Todo 4", complete: false }
+        ]
+      })
     );
   });
 

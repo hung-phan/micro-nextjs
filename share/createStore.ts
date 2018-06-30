@@ -1,11 +1,14 @@
 /* global process */
 
-import { applyMiddleware, compose, createStore } from "redux";
+import { AnyAction, applyMiddleware, compose, createStore, Store } from "redux";
 import { createLogger } from "redux-logger";
-import thunkMiddleware from "redux-thunk";
+import thunkMiddleware, { ThunkMiddleware } from "redux-thunk";
 import rootReducer from "./rootReducer";
+import { IApplicationState } from "./state";
 
-export const middlewares = [thunkMiddleware];
+export const middlewares = [
+  thunkMiddleware as ThunkMiddleware<IApplicationState, AnyAction>
+];
 
 export const enhancers = [];
 
@@ -19,7 +22,9 @@ if (process.env.ENVIRONMENT === "client") {
   }
 }
 
-export default (initialState: object = {}) =>
+export default (
+  initialState: object = {}
+): Store<IApplicationState, AnyAction> =>
   createStore(
     rootReducer,
     initialState,

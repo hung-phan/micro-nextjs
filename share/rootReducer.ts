@@ -1,8 +1,6 @@
 import { combineReducers } from "redux";
-import {
-  mountPoint as todoMountPoint,
-  reducer as todoReducer
-} from "./components/todo/logicBundle";
+import { reducer as todoReducer } from "./components/todo/logicBundle";
+import { todoMountPoint } from "./state";
 
 const rootReducer = combineReducers({
   [todoMountPoint]: todoReducer

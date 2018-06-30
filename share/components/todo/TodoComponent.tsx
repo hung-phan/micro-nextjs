@@ -1,11 +1,11 @@
 import * as React from "react";
 import { TodoModel } from "../../domain/model";
-import { actions as todoActions } from "./logicBundle";
+import { bindActions as bindTodoActions } from "./logicBundle";
 
 class TodoComponent extends React.Component<{
   todo: TodoModel.Todo;
-  completeTodo: typeof todoActions.completeTodo;
-  removeTodo: typeof todoActions.removeTodo;
+  complete: typeof bindTodoActions.complete;
+  remove: typeof bindTodoActions.remove;
 }> {
   public render() {
     const text = this.props.todo.complete ? (
@@ -24,7 +24,7 @@ class TodoComponent extends React.Component<{
           <button
             type="button"
             className="btn btn-xs btn-success"
-            onClick={this.completeTodo}
+            onClick={this.complete}
           >
             <i className="fa fa-check" />
           </button>
@@ -33,7 +33,7 @@ class TodoComponent extends React.Component<{
           <button
             type="button"
             className="btn btn-xs btn-danger"
-            onClick={this.removeTodo}
+            onClick={this.remove}
           >
             <i className="fa fa-remove" />
           </button>
@@ -42,12 +42,12 @@ class TodoComponent extends React.Component<{
     );
   }
 
-  private completeTodo = () => {
-    this.props.completeTodo(this.props.todo.id);
+  private complete = () => {
+    this.props.complete(this.props.todo.id);
   };
 
-  private removeTodo = () => {
-    this.props.removeTodo(this.props.todo.id);
+  private remove = () => {
+    this.props.remove(this.props.todo.id);
   };
 }
 
