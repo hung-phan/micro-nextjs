@@ -11,7 +11,8 @@ module.exports = {
   testPathIgnorePatterns: [
     "<rootDir>/.next/",
     "<rootDir>/.next_server/",
-    "<rootDir>/node_modules/"
+    "<rootDir>/node_modules/",
+    "<rootDir>/next.config.js"
   ],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "node", "json"],
   collectCoverage: true
