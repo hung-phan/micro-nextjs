@@ -13,7 +13,10 @@ module.exports = {
   ],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "node", "json"],
   collectCoverage: true,
-  collectCoverageFrom: [
-    "{pages,server,share}/**/*.{js,jsx,ts,tsx}"
-  ]
+  collectCoverageFrom: ["{pages,server,share}/**/*.{js,jsx,ts,tsx}"],
+  globals: {
+    "ts-jest": {
+      useBabelrc: true
+    }
+  }
 };
