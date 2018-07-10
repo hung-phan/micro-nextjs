@@ -16,7 +16,8 @@ module.exports = {
   collectCoverageFrom: ["{pages,server,share}/**/*.{js,jsx,ts,tsx}"],
   globals: {
     "ts-jest": {
-      useBabelrc: true
+      useBabelrc: true,
+      tsConfigFile: "tsconfig.server.json"
     }
   }
 };
