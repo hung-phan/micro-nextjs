@@ -1,5 +1,4 @@
 import update from "immutability-helper";
-import * as _ from "lodash";
 import actionCreatorFactory from "typescript-fsa";
 import { reducerWithInitialState } from "typescript-fsa-reducers";
 import { asyncFactory, thunkToAction } from "typescript-fsa-redux-thunk";
@@ -31,32 +30,38 @@ export const actions = {
 
   remove: asyncActionCreator<string, void>(
     "REMOVE",
-    (id, _dispatch, getState) => {
+    async (id, _dispatch, getState) => {
       const todo = selectors._findById(selectors.getTodos(getState()), id);
 
       if (!todo) {
         return;
       }
 
-      return fetch(`/api/todo/${id}`, { method: "DELETE" }).then(_.noop);
+      try {
+        await fetch(`/api/todo/${id}`, { method: "DELETE" });
+      } catch (e) {
+        // do nothing
+      }
     }
   ),
 
   complete: asyncActionCreator<string, TodoModel.Todo>(
     "COMPLETE",
-    (id, _dispatch, getState) => {
+    async (id, _dispatch, getState) => {
       const todo = selectors._findById(selectors.getTodos(getState()), id);
 
       if (!todo) {
         return;
       }
 
-      return fetch(`/api/todo/${id}`, {
+      const result = await fetch(`/api/todo/${id}`, {
         method: "PUT",
         body: JSON.stringify({
           complete: !todo.complete
         })
-      }).then(res => res.json());
+      });
+
+      return result.json();
     }
   ),
 
