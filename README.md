@@ -1,5 +1,7 @@
 # Micro-next.js
 
+[![build status](https://travis-ci.org/hung-phan/micro-nextjs.svg?branch=master)](http://travis-ci.org/hung-phan/micro-nextjs/)
+
 ## Previous project
 - [koa-react-isomorphic](https://github.com/hung-phan/koa-react-isomorphic)
 
