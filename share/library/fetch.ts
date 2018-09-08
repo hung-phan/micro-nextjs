@@ -12,19 +12,16 @@ const BASE_URL =
 export const create = (baseUrl: string) => (
   url: string,
   options?: RequestInit
-): Promise<Response> => {
-  const headers = {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-    ...(options && options.headers)
-  };
-
-  return fetch(`${baseUrl}${url}`, {
-    headers,
+): Promise<Response> =>
+  fetch(`${baseUrl}${url}`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      ...(options && options.headers)
+    },
     mode: baseUrl ? "cors" : "same-origin",
     credentials: baseUrl ? "include" : "same-origin",
     ..._.omit(options, "headers")
   });
-};
 
 export default create(BASE_URL);
