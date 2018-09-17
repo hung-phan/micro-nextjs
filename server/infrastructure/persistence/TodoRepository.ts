@@ -1,3 +1,4 @@
+import * as Boom from "boom";
 import * as DataLoader from "dataloader";
 import * as faker from "faker";
 import * as _ from "lodash";
@@ -48,7 +49,7 @@ export const update = (id: string, updates: TodoModel.ITodoUpdate): TodoModel.To
   const iTodo = todoData.find((todo: TodoModel.ITodo) => id === todo.id);
 
   if (!iTodo) {
-    throw new Error(`Cannot find Todo with given id: ${id}`);
+    throw Boom.badRequest(`Cannot find Todo with given id: ${id}`);
   }
 
   Object.assign(iTodo, updates);
