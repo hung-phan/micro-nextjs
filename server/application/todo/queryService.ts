@@ -8,13 +8,15 @@ export const create = async (
   req: MicroIncomingMessage,
   res: ServerResponse
 ) => {
-  try {
-    const { text } = TodoModel.validator.TodoUpdate(await json(req));
+  let text;
 
-    send(res, 201, await TodoRepository.create(text));
+  try {
+    text = TodoModel.validator.TodoCreate(await json(req)).text;
   } catch (error) {
     throw Boom.boomify(error, { statusCode: 400 });
   }
+
+  send(res, 201, await TodoRepository.create(text));
 };
 
 export const getAll = async (_: MicroIncomingMessage, res: ServerResponse) => {
@@ -32,13 +34,15 @@ export const update = async (
   req: MicroIncomingMessage,
   res: ServerResponse
 ) => {
-  try {
-    const updates = TodoModel.validator.TodoUpdate(await json(req));
+  let updates;
 
-    send(res, 200, await TodoRepository.update(req.params.id, updates));
+  try {
+    updates = TodoModel.validator.TodoUpdate(await json(req));
   } catch (error) {
     throw Boom.boomify(error, { statusCode: 400 });
   }
+
+  send(res, 200, await TodoRepository.update(req.params.id, updates));
 };
 
 export const remove = async (

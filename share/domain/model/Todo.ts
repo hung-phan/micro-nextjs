@@ -29,6 +29,9 @@ export const validator = {
     text: "string",
     complete: "boolean"
   }),
+  TodoCreate: struct({
+    text: "string"
+  }),
   TodoUpdate: struct({
     text: "string?",
     complete: "boolean?"
