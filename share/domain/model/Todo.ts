@@ -1,5 +1,5 @@
 import { struct } from "superstruct";
-import IEntity from "../IEntity";
+import { IEntity } from "..";
 
 export interface ITodo extends IEntity {
   text: string;
