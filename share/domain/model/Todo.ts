@@ -1,9 +1,14 @@
 import { struct } from "superstruct";
+import IEntity from "../Entity";
 
-export interface ITodo {
-  id?: string;
+export interface ITodo extends IEntity {
   text: string;
   complete: boolean;
+}
+
+export interface ITodoUpdate {
+  text?: string;
+  complete?: boolean;
 }
 
 export class Todo implements ITodo {
@@ -16,11 +21,6 @@ export class Todo implements ITodo {
     this.text = text;
     this.complete = complete;
   }
-}
-
-export interface ITodoUpdate {
-  text?: string;
-  complete?: boolean;
 }
 
 export const validator = {
