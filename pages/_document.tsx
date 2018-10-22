@@ -8,7 +8,6 @@ export default class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="theme-color" content="#000000" />
-          <title>Application</title>
 
           <link rel="manifest" href="/static/manifest.json" />
           <link href="/static/favicon.ico" rel="shortcut icon" type="image/x-icon" />
