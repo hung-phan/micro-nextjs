@@ -5,12 +5,19 @@ const withTypescript = require("@zeit/next-typescript");
 const withCss = require("@zeit/next-css");
 const withSass = require("@zeit/next-sass");
 
-module.exports = _.flow(
+const plugins = [
   withTypescript,
   withCss,
   withSass,
-  withOffline,
-)({
+];
+
+if (process.env.NODE_ENV === "production") {
+  plugins.push(
+    withOffline
+  );
+}
+
+module.exports = _.flow(...plugins)({
   workboxOpts: {
     runtimeCaching: [
       {
