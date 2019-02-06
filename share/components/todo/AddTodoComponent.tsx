@@ -1,46 +1,38 @@
 import * as React from "react";
 import { bindActions as bindTodoActions } from "./logicBundle";
 
-export default class AddTodoComponent extends React.PureComponent<{
+export default function AddTodoComponent(props: {
   addTodo: typeof bindTodoActions.create;
-}> {
-  private readonly inputRef: React.RefObject<HTMLInputElement>;
+}) {
+  const inputRef = React.useRef(null);
+  const addTodo = async () => {
+    // `current` points to the mounted text input element
+    const element = inputRef.current;
 
-  constructor(props) {
-    super(props);
-
-    this.inputRef = React.createRef();
-  }
-
-  public render() {
-    return (
-      <div className="col-md-12">
-        <div className="form-inline">
-          <div className="form-group">
-            <input
-              ref={this.inputRef}
-              type="text"
-              className="form-control"
-              placeholder="Todo"
-            />
-          </div>
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={this.addTodo}
-          >
-            Add Todo
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  private addTodo = async () => {
-    const element = this.inputRef.current;
-
-    await this.props.addTodo(element.value);
+    await props.addTodo(element.value);
 
     element.value = "";
   };
+
+  return (
+    <div className="col-md-12">
+      <div className="form-inline">
+        <div className="form-group">
+          <input
+            ref={inputRef}
+            type="text"
+            className="form-control"
+            placeholder="Todo"
+          />
+        </div>
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={addTodo}
+        >
+          Add Todo
+        </button>
+      </div>
+    </div>
+  );
 }

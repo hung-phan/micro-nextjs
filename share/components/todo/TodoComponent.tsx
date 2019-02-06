@@ -2,49 +2,40 @@ import * as React from "react";
 import { TodoModel } from "../../domain/model";
 import { bindActions as bindTodoActions } from "./logicBundle";
 
-class TodoComponent extends React.Component<{
+export default function TodoComponent(props: {
   todo: TodoModel.Todo;
   complete: typeof bindTodoActions.complete;
   remove: typeof bindTodoActions.remove;
-}> {
-  public render() {
-    const text = this.props.todo.complete ? (
-      <s>{this.props.todo.text}</s>
-    ) : (
-      <span>{this.props.todo.text}</span>
-    );
+}) {
+  const { todo } = props;
 
-    return (
-      <tr>
-        <td>
-          <span>{this.props.todo.id}</span>
-        </td>
-        <td>{text}</td>
-        <td>
-          <button
-            type="button"
-            className="btn btn-xs btn-success"
-            onClick={this.complete}
-          >
-            <i className="fa fa-check" />
-          </button>
-        </td>
-        <td>
-          <button
-            type="button"
-            className="btn btn-xs btn-danger"
-            onClick={this.remove}
-          >
-            <i className="fa fa-remove" />
-          </button>
-        </td>
-      </tr>
-    );
-  }
+  const complete = React.useCallback(() => props.complete(todo.id), [todo.id]);
+  const remove = React.useCallback(() => props.remove(todo.id), [todo.id]);
 
-  private complete = () => this.props.complete(this.props.todo.id);
-
-  private remove = () => this.props.remove(this.props.todo.id);
+  return (
+    <tr>
+      <td>
+        <span>{todo.id}</span>
+      </td>
+      <td>{todo.complete ? <s>{todo.text}</s> : <span>{todo.text}</span>}</td>
+      <td>
+        <button
+          type="button"
+          className="btn btn-xs btn-success"
+          onClick={complete}
+        >
+          <i className="fa fa-check" />
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          className="btn btn-xs btn-danger"
+          onClick={remove}
+        >
+          <i className="fa fa-remove" />
+        </button>
+      </td>
+    </tr>
+  );
 }
-
-export default TodoComponent;
