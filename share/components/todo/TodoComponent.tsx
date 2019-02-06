@@ -1,8 +1,9 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { TodoModel } from "../../domain/model";
 import { bindActions as bindTodoActions } from "./logicBundle";
 
-export default function TodoComponent(props: {
+export default React.memo(function TodoComponent(props: {
   todo: TodoModel.Todo;
   complete: typeof bindTodoActions.complete;
   remove: typeof bindTodoActions.remove;
@@ -38,4 +39,4 @@ export default function TodoComponent(props: {
       </td>
     </tr>
   );
-}
+}, (prevProps, nextProps) => _.isEqual(prevProps.todo, nextProps.todo));
