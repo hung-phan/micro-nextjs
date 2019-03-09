@@ -7,5 +7,6 @@ RUN chmod +x /usr/local/bin/dumb-init
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
+RUN npm run build
 
 CMD ["dumb-init", "npm", "start"]
