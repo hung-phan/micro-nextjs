@@ -20,7 +20,7 @@ const batchLoadFn: DataLoader.BatchLoadFn<string, TodoModel.Todo> = keys => {
   return Promise.resolve(data);
 };
 
-export const dataloader = new DataLoader(batchLoadFn);
+const dataloader = new DataLoader(batchLoadFn);
 
 export const getAll = (): Promise<TodoModel.Todo[]> =>
   Promise.resolve(
