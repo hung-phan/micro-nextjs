@@ -1,5 +1,5 @@
 /* global process */
-import * as fetch from "isomorphic-fetch";
+import fetch from "isomorphic-fetch";
 import * as _ from "lodash";
 
 const BASE_URL =

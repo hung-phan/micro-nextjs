@@ -1,5 +1,5 @@
 import * as Boom from "boom";
-import * as DataLoader from "dataloader";
+import DataLoader from "dataloader";
 import * as faker from "faker";
 import * as _ from "lodash";
 import { TodoModel } from "../../../share/domain/model";

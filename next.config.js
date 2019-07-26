@@ -1,12 +1,10 @@
 const _ = require("lodash");
 const webpack = require("webpack");
 const withOffline = require("next-offline");
-const withTypescript = require("@zeit/next-typescript");
 const withCss = require("@zeit/next-css");
 const withSass = require("@zeit/next-sass");
 
 const plugins = [
-  withTypescript,
   withCss,
   withSass,
 ];
@@ -22,7 +20,7 @@ module.exports = _.flow(...plugins)({
     runtimeCaching: [
       {
         urlPattern: /\.(gif|jpg|jpeg|png|svg|ttf|eot|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        handler: 'cacheFirst'
+        handler: 'CacheFirst'
       },
     ]
   },

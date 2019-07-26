@@ -1,7 +1,7 @@
 import micro from "micro";
 import { handleErrors } from "micro-boom";
 import { del, get, post, put, router, withNamespace } from "microrouter";
-import * as next from "next";
+import next from "next";
 import { configManager } from "../infrastructure/service";
 import * as Todo from "./todo";
 
