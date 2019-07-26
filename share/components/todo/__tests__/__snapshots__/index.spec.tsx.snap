@@ -13,7 +13,7 @@ exports[`todo/TodoList should render component 1`] = `
       <h1
         class="jsx-3168813922"
       >
-        Todos List
+        Todo List
       </h1>
     </div>
     <div

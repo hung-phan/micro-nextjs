@@ -2,7 +2,7 @@ import { TodoModel } from "./domain/model";
 
 export type TodoState = TodoModel.Todo[];
 
-export const todoMountPoint = "todos";
+export const todoMountPoint = "todo";
 
 export interface IApplicationState {
   [todoMountPoint]: TodoState;

@@ -7,7 +7,7 @@ import fetch from "../../library/fetch";
 import { IApplicationState, todoMountPoint, TodoState } from "../../state";
 
 export const selectors = {
-  getTodos: (state: IApplicationState): TodoState => state[todoMountPoint],
+  getTodo: (state: IApplicationState): TodoState => state[todoMountPoint],
 
   _findById: (internalState: TodoState, id: string) =>
     internalState.find(todo => todo.id === id),
@@ -31,7 +31,7 @@ export const actions = {
   remove: asyncActionCreator<string, void>(
     "REMOVE",
     async (id, _dispatch, getState) => {
-      const todo = selectors._findById(selectors.getTodos(getState()), id);
+      const todo = selectors._findById(selectors.getTodo(getState()), id);
 
       if (!todo) {
         return;
@@ -48,7 +48,7 @@ export const actions = {
   complete: asyncActionCreator<string, TodoModel.Todo>(
     "COMPLETE",
     async (id, _dispatch, getState) => {
-      const todo = selectors._findById(selectors.getTodos(getState()), id);
+      const todo = selectors._findById(selectors.getTodo(getState()), id);
 
       if (!todo) {
         return;

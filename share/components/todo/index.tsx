@@ -13,7 +13,7 @@ import {
 import TodoComponent from "./TodoComponent";
 
 export class TodoListComponent extends React.Component<{
-  todos: TodoState;
+  todo: TodoState;
   actions: typeof bindTodoActions;
 }> {
   public static async getInitialProps({
@@ -31,13 +31,13 @@ export class TodoListComponent extends React.Component<{
   }
 
   public render() {
-    const { todos, actions } = this.props;
+    const { todo, actions } = this.props;
 
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <h1>Todos List</h1>
+            <h1>Todo List</h1>
           </div>
 
           <AddTodoComponent addTodo={actions.create} />
@@ -45,7 +45,7 @@ export class TodoListComponent extends React.Component<{
           <div className="col-md-12">
             <table className="table">
               <tbody>
-                {todos.map(todo => (
+                {todo.map(todo => (
                   <TodoComponent
                     key={todo.id}
                     todo={todo}
@@ -75,7 +75,7 @@ export class TodoListComponent extends React.Component<{
 
 export default connect(
   (state: IApplicationState) => ({
-    todos: todoSelectors.getTodos(state)
+    todo: todoSelectors.getTodo(state)
   }),
   (dispatch: Dispatch) => ({
     actions: bindActionCreators(bindTodoActions, dispatch)

@@ -4,7 +4,7 @@ import { actions, reducer } from "../logicBundle";
 
 describe("todo/logicBundle", () => {
   describe("reducer", () => {
-    const todos = [
+    const todoList = [
       new TodoModel.Todo({
         id: "1",
         text: "New Todo 1",
@@ -27,22 +27,22 @@ describe("todo/logicBundle", () => {
         reducer(
           [],
           actions.create.async.done({
-            params: todos[0].id,
-            result: todos[0]
+            params: todoList[0].id,
+            result: todoList[0]
           })
         )
-      ).toEqual([todos[0]]);
+      ).toEqual([todoList[0]]);
     });
 
     it("should return a todo list with 2 todo items when calls 'remove' action", () => {
       expect(
         reducer(
-          todos,
+          todoList,
           actions.remove.async.done({
-            params: todos[0].id
+            params: todoList[0].id
           })
         )
-      ).toEqual(todos.slice(1));
+      ).toEqual(todoList.slice(1));
     });
 
     it("should return a todo list when calls 'fetch' action", () => {
@@ -50,24 +50,24 @@ describe("todo/logicBundle", () => {
         reducer(
           [],
           actions.fetch.async.done({
-            result: todos
+            result: todoList
           })
         )
-      ).toEqual(todos);
+      ).toEqual(todoList);
     });
 
-    it("should return a todos list with 1 completed todo when calls 'completeTodo' action", () => {
-      todos[1].complete = true;
+    it("should return a todoList list with 1 completed todo when calls 'completeTodo' action", () => {
+      todoList[1].complete = true;
 
       expect(
         reducer(
-          todos,
+          todoList,
           actions.complete.async.done({
-            params: todos[1].id,
-            result: todos[1]
+            params: todoList[1].id,
+            result: todoList[1]
           })
         )
-      ).toEqual(todos);
+      ).toEqual(todoList);
     });
   });
 });
