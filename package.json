@@ -2,6 +2,7 @@
   "name": "micro-nextjs",
   "version": "1.0.0",
   "dependencies": {
+    "@types/supertest": "^2.0.8",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
