@@ -2,13 +2,14 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": ".next/"
+    "outDir": ".next_server/",
+    "target": "es2017",
+    "isolatedModules": false,
+    "noEmit": false
   },
   "include": [
     "@types/**/*.ts",
     "server/**/*.ts",
-    "server/**/*.tsx",
-    "share/**/*.ts",
-    "share/**/*.tsx"
+    "share/**/*.ts"
   ]
 }
