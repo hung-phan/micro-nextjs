@@ -16,18 +16,18 @@ export const create = async (
     throw Boom.boomify(error, { statusCode: 400 });
   }
 
-  send(res, 201, await TodoRepository.create(text));
+  return send(res, 201, await TodoRepository.create(text));
 };
 
 export const getAll = async (_: MicroIncomingMessage, res: ServerResponse) => {
-  send(res, 200, await TodoRepository.getAll());
+  return send(res, 200, await TodoRepository.getAll());
 };
 
 export const getById = async (
   req: MicroIncomingMessage,
   res: ServerResponse
 ) => {
-  send(res, 200, await TodoRepository.getById(req.params.id));
+  return send(res, 200, await TodoRepository.getById(req.params.id));
 };
 
 export const update = async (
@@ -42,12 +42,12 @@ export const update = async (
     throw Boom.boomify(error, { statusCode: 400 });
   }
 
-  send(res, 200, await TodoRepository.update(req.params.id, updates));
+  return send(res, 200, await TodoRepository.update(req.params.id, updates));
 };
 
 export const remove = async (
   req: MicroIncomingMessage,
   res: ServerResponse
 ) => {
-  send(res, 204, await TodoRepository.remove(req.params.id));
+  return send(res, 204, await TodoRepository.remove(req.params.id));
 };
