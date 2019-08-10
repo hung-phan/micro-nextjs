@@ -5,6 +5,7 @@ if (process.env.ENVIRONMENT === "client") {
 
 import withRedux from "next-redux-wrapper";
 import App, { Container } from "next/app";
+import Head from "next/head";
 import * as React from "react";
 import { Provider } from "react-redux";
 import { Store } from "redux";
@@ -17,6 +18,9 @@ export default withRedux(createStore)(
 
       return (
         <Container>
+          <Head>
+            <title>My new cool app</title>
+          </Head>
           <Provider store={store}>
             <Component {...pageProps} />
           </Provider>

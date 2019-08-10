@@ -14,7 +14,6 @@ export default class MyDocument extends Document {
         <link href="/static/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 
         <link rel="stylesheet" href="/_next/static/style.css"/>
-        <title>Todo List</title>
       </Head>
       <body>
       <Main/>
