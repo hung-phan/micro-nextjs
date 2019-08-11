@@ -5,7 +5,7 @@ module.exports = {
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   transform: {
     "^.+\\.ts$": "ts-jest",
-    "^.+\\.tsx$": "babel-jest",
+    "^.+\\.tsx$": "babel-jest"
   },
   testPathIgnorePatterns: [
     "<rootDir>/.next/",

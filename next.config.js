@@ -4,15 +4,10 @@ const withOffline = require("next-offline");
 const withCss = require("@zeit/next-css");
 const withSass = require("@zeit/next-sass");
 
-const plugins = [
-  withCss,
-  withSass,
-];
+const plugins = [withCss, withSass];
 
 if (process.env.NODE_ENV === "production") {
-  plugins.push(
-    withOffline
-  );
+  plugins.push(withOffline);
 }
 
 module.exports = _.flow(...plugins)({
@@ -20,8 +15,8 @@ module.exports = _.flow(...plugins)({
     runtimeCaching: [
       {
         urlPattern: /\.(gif|jpg|jpeg|png|svg|ttf|eot|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        handler: 'CacheFirst'
-      },
+        handler: "CacheFirst"
+      }
     ]
   },
 
