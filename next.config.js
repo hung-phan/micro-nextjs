@@ -14,8 +14,19 @@ module.exports = _.flow(...plugins)({
   workboxOpts: {
     runtimeCaching: [
       {
-        urlPattern: /\.(gif|jpg|jpeg|png|svg|ttf|eot|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        handler: "CacheFirst"
+        urlPattern: /^https?.*/,
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "http-calls",
+          networkTimeoutSeconds: 15,
+          expiration: {
+            maxEntries: 150,
+            maxAgeSeconds: 30 * 24 * 60 * 60 // 1 month
+          },
+          cacheableResponse: {
+            statuses: [0, 200]
+          }
+        }
       }
     ]
   },

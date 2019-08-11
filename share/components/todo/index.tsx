@@ -45,10 +45,10 @@ export class TodoListComponent extends React.Component<{
           <div className="col-md-12">
             <table className="table">
               <tbody>
-                {todo.map(todo => (
+                {todo.map(_todo => (
                   <TodoComponent
-                    key={todo.id}
-                    todo={todo}
+                    key={_todo.id}
+                    todo={_todo}
                     complete={actions.complete}
                     remove={actions.remove}
                   />
