@@ -7,7 +7,7 @@ const withSass = require("@zeit/next-sass");
 const plugins = [withCss, withSass];
 
 if (process.env.NODE_ENV === "production") {
-  plugins.push(withOffline);
+  plugins.unshift(withOffline);
 }
 
 module.exports = _.flow(...plugins)({
@@ -50,7 +50,10 @@ module.exports = _.flow(...plugins)({
     });
 
     // Optimize output css
-    if (config.mode === 'production' && Array.isArray(config.optimization.minimizer)) {
+    if (
+      config.mode === "production" &&
+      Array.isArray(config.optimization.minimizer)
+    ) {
       const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
       config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin());
     }
