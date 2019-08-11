@@ -20,6 +20,7 @@
     "next": "^9.0.3",
     "next-offline": "^4.0.3",
     "next-redux-wrapper": "^2.1.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "popper.js": "^1.15.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

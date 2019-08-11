@@ -49,6 +49,12 @@ module.exports = _.flow(...plugins)({
       ]
     });
 
+    // Optimize output css
+    if (config.mode === 'production' && Array.isArray(config.optimization.minimizer)) {
+      const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+      config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin());
+    }
+
     // compile time config
     config.plugins.push(
       new webpack.DefinePlugin({
