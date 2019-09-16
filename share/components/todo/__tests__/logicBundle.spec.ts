@@ -39,7 +39,8 @@ describe("todo/logicBundle", () => {
         reducer(
           todoList,
           actions.remove.async.done({
-            params: todoList[0].id
+            params: todoList[0].id,
+            result: undefined
           })
         )
       ).toEqual(todoList.slice(1));
