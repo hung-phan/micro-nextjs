@@ -12,7 +12,7 @@ export default class StaticPageComponent extends React.PureComponent {
         <div className="row">
           <div className="col-md-12">
             <h1>Static Page</h1>
-            <Link prefetch href="/">
+            <Link href="/">
               <a>Back to Home page</a>
             </Link>
           </div>

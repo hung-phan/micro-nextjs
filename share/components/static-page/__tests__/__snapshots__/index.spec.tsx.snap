@@ -15,7 +15,6 @@ exports[`Component: StaticPage should render component 1`] = `
       </h1>
       <Link
         href="/"
-        prefetch={true}
       >
         <a>
           Back to Home page
