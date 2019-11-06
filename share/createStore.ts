@@ -1,7 +1,6 @@
 /* global process */
 
 import { AnyAction, applyMiddleware, compose, createStore, Store } from "redux";
-import { createLogger } from "redux-logger";
 import thunkMiddleware, { ThunkMiddleware } from "redux-thunk";
 import rootReducer from "./rootReducer";
 import { IApplicationState } from "./state";
@@ -14,6 +13,8 @@ export const enhancers = [];
 
 if (process.env.ENVIRONMENT === "client") {
   if (process.env.NODE_ENV === "development") {
+    const { createLogger } = require("redux-logger");
+
     middlewares.push(createLogger({ level: "info" }));
   }
 

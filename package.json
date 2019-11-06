@@ -30,11 +30,11 @@
   "devDependencies": {
     "@types/boom": "^7.3.0",
     "@types/isomorphic-fetch": "0.0.35",
-    "@types/jest": "^24.0.21",
+    "@types/jest": "^24.0.22",
     "@types/lodash": "^4.14.144",
     "@types/micro": "^7.3.3",
     "@types/next": "^8.0.6",
-    "@types/node": "^12.12.5",
+    "@types/node": "^12.12.6",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
     "@types/react-redux": "^7.1.5",
@@ -64,10 +64,10 @@
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.2.1",
     "ts-node": "^8.4.1",
-    "tslint": "^5.20.0",
+    "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react-hooks": "^2.2.1",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.2"
   },
   "license": "MIT",
   "scripts": {
