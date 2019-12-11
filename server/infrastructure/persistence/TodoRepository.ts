@@ -45,7 +45,7 @@ export const getAll = (): Promise<TodoModel.Todo[]> => {
 export const getById = (id: string): Promise<TodoModel.Todo> =>
   dataloader.load(id);
 
-export const getByIds = (ids: string[]): Promise<TodoModel.Todo[]> =>
+export const getByIds = (ids: string[]): Promise<Array<TodoModel.Todo | Error>> =>
   dataloader.loadMany(ids);
 
 export const update = (id: string, updates: TodoModel.ITodoUpdate): Promise<TodoModel.Todo> => {
