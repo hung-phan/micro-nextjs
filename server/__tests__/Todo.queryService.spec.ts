@@ -4,13 +4,14 @@ import { httpServer } from "../application";
 
 let todo: TodoModel.ITodo;
 
-beforeAll(async () => {
-  const res = await request(httpServer)
+beforeAll(() => {
+  return request(httpServer)
     .post("/api/todo")
     .send({ text: "New Todo" })
-    .set("Accept", "application/json");
-
-  todo = res.body;
+    .set("Accept", "application/json")
+    .then(res => {
+      todo = res.body;
+    });
 });
 
 test(".getAll()", () => {
