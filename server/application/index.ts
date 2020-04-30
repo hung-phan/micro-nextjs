@@ -6,7 +6,7 @@ import { configManager } from "../infrastructure/service";
 import * as Todo from "./todo";
 
 export const nextApplication = next({
-  dev: configManager.NODE_ENV !== "production"
+  dev: configManager.NODE_ENV !== "production",
 });
 
 export const httpServer = micro(
@@ -17,12 +17,12 @@ export const httpServer = micro(
         get("/", Todo.queryService.getAll),
         get("/:id", Todo.queryService.getById),
         put("/:id", Todo.queryService.update),
-        del("/:id", Todo.queryService.remove),
+        del("/:id", Todo.queryService.remove)
       ),
 
       // offline caching
       get("/service-worker.js", (req, res) =>
-        nextApplication.serveStatic(req, res, `${process.cwd()}/.next/service-worker.js`)
+        nextApplication.serveStatic(req, res, `${process.cwd()}/.next/static/service-worker.js`)
       ),
 
       // SPA

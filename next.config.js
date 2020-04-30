@@ -1,10 +1,8 @@
 const _ = require("lodash");
 const webpack = require("webpack");
 const withOffline = require("next-offline");
-const withCss = require("@zeit/next-css");
-const withSass = require("@zeit/next-sass");
 
-const plugins = [withCss, withSass];
+const plugins = [];
 
 if (process.env.NODE_ENV === "production") {
   plugins.unshift(withOffline);
@@ -12,6 +10,7 @@ if (process.env.NODE_ENV === "production") {
 
 module.exports = _.flow(...plugins)({
   workboxOpts: {
+    swDest: 'static/service-worker.js',
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
