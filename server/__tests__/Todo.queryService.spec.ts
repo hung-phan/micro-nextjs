@@ -52,5 +52,8 @@ test(".remove()", () => {
   return request(httpServer)
     .del(`/api/todo/${todo.id}`)
     .set("Accept", "application/json")
-    .expect(204);
+    .expect(204)
+    .then(res => {
+      expect(res.body).toEqual({});
+    });
 });

@@ -14,7 +14,7 @@ before_install:
   - npm install -g codecov
 
 script:
-  - npm test -- --coverage
+  - npm test -- --coverage --forceExit
   - codecov
 
 after_success:
