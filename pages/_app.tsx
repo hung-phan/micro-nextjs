@@ -1,5 +1,4 @@
 if (process.env.ENVIRONMENT === "client") {
-  require("font-awesome/scss/font-awesome.scss");
   require("bootstrap/scss/bootstrap.scss");
 }
 
