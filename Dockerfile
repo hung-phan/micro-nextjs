@@ -1,4 +1,4 @@
-FROM node:10 as builder
+FROM node:lts as builder
 
 WORKDIR /opt/application
 
@@ -7,7 +7,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM node:10
+FROM node:lts
 
 WORKDIR /opt/application
 
