@@ -1,7 +1,7 @@
 import * as React from "react";
 import { bindActions as bindTodoActions } from "./logicBundle";
 
-export default React.memo(function AddTodoComponent(props: {
+function AddTodoComponent(props: {
   addTodo: typeof bindTodoActions.create;
 }) {
   const inputRef = React.useRef(null);
@@ -35,4 +35,6 @@ export default React.memo(function AddTodoComponent(props: {
       </div>
     </div>
   );
-});
+}
+
+export default React.memo(AddTodoComponent);

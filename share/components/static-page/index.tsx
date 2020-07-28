@@ -1,7 +1,7 @@
 import Link from "next/link";
 import * as React from "react";
 
-export default class StaticPageComponent extends React.PureComponent {
+class StaticPageComponent extends React.PureComponent {
   public static getInitialProps({ pathname }: { pathname: string }) {
     return { pathname };
   }
@@ -21,3 +21,5 @@ export default class StaticPageComponent extends React.PureComponent {
     );
   }
 }
+
+export default StaticPageComponent;

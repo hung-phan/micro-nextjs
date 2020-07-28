@@ -6,7 +6,7 @@ import rootReducer from "./rootReducer";
 import { IApplicationState } from "./state";
 
 export const middlewares = [
-  thunkMiddleware as ThunkMiddleware<IApplicationState, AnyAction>
+  thunkMiddleware as ThunkMiddleware<IApplicationState, AnyAction>,
 ];
 
 export const enhancers = [];
@@ -23,14 +23,13 @@ if (process.env.ENVIRONMENT === "client") {
   }
 }
 
-export default (
+const makeStore = (
   initialState: object = {}
 ): Store<IApplicationState, AnyAction> =>
   createStore(
     rootReducer,
     initialState,
-    compose(
-      applyMiddleware(...middlewares),
-      ...enhancers
-    )
+    compose(applyMiddleware(...middlewares), ...enhancers)
   );
+
+export default makeStore;
