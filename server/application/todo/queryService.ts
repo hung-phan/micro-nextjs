@@ -1,5 +1,6 @@
 import * as Boom from "boom";
 import { MicroIncomingMessage, ServerResponse } from "http";
+import { assert } from "superstruct";
 import { json, send } from "micro";
 import { TodoModel } from "../../../share/domain/model";
 import { TodoRepository } from "../../infrastructure/persistence";
@@ -8,15 +9,17 @@ export const create = async (
   req: MicroIncomingMessage,
   res: ServerResponse
 ) => {
-  let text;
+  let createReq;
 
   try {
-    text = TodoModel.validator.TodoCreate(await json(req)).text;
+    createReq = await json(req);
+
+    assert(createReq, TodoModel.validator.TodoCreate);
   } catch (error) {
     throw Boom.boomify(error, { statusCode: 400 });
   }
 
-  return send(res, 201, await TodoRepository.create(text));
+  return send(res, 201, await TodoRepository.create(createReq.text));
 };
 
 export const getAll = async (_: MicroIncomingMessage, res: ServerResponse) => {
@@ -34,15 +37,17 @@ export const update = async (
   req: MicroIncomingMessage,
   res: ServerResponse
 ) => {
-  let updates;
+  let updateReq;
 
   try {
-    updates = TodoModel.validator.TodoUpdate(await json(req));
+    updateReq = await json(req);
+
+    assert(updateReq, TodoModel.validator.TodoUpdate);
   } catch (error) {
     throw Boom.boomify(error, { statusCode: 400 });
   }
 
-  return send(res, 200, await TodoRepository.update(req.params.id, updates));
+  return send(res, 200, await TodoRepository.update(req.params.id, updateReq));
 };
 
 export const remove = async (

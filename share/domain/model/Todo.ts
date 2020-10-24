@@ -1,4 +1,4 @@
-import { struct } from "superstruct";
+import { boolean, object, optional, string } from "superstruct";
 import IEntity from "../IEntity";
 
 export interface ITodo extends IEntity {
@@ -24,16 +24,16 @@ export class Todo implements ITodo {
 }
 
 export const validator = {
-  Todo: struct({
-    id: "string?",
-    text: "string",
-    complete: "boolean"
+  Todo: object({
+    id: optional(string()),
+    text: string(),
+    complete: boolean()
   }),
-  TodoCreate: struct({
-    text: "string"
+  TodoCreate: object({
+    text: string()
   }),
-  TodoUpdate: struct({
-    text: "string?",
-    complete: "boolean?"
+  TodoUpdate: object({
+    text: optional(string()),
+    complete: optional(boolean())
   })
 };
