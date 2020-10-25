@@ -1,19 +1,19 @@
 import Link from "next/link";
 import * as React from "react";
-import { connect } from "react-redux";
+import { connect, DefaultRootState } from "react-redux";
 import { AnyAction, bindActionCreators, Dispatch, Store } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { IApplicationState, TodoState } from "../../state";
 import AddTodoComponent from "./AddTodoComponent";
 import {
   actions as todoActions,
   bindActions as bindTodoActions,
   selectors as todoSelectors,
+  State,
 } from "./logicBundle";
 import TodoComponent from "./TodoComponent";
 
 export class TodoListComponent extends React.Component<{
-  todo: TodoState;
+  todoState: State;
   actions: typeof bindTodoActions;
 }> {
   public static async getInitialProps({
@@ -21,9 +21,9 @@ export class TodoListComponent extends React.Component<{
     store,
   }: {
     pathname: string;
-    store: Store<IApplicationState, AnyAction>;
+    store: Store<DefaultRootState, AnyAction>;
   }) {
-    await (store.dispatch as ThunkDispatch<IApplicationState, any, AnyAction>)(
+    await (store.dispatch as ThunkDispatch<DefaultRootState, any, AnyAction>)(
       todoActions.fetch.action()
     );
 
@@ -31,7 +31,7 @@ export class TodoListComponent extends React.Component<{
   }
 
   public render() {
-    const { todo, actions } = this.props;
+    const { todoState, actions } = this.props;
 
     return (
       <div className="container">
@@ -45,7 +45,7 @@ export class TodoListComponent extends React.Component<{
           <div className="col-md-12">
             <table className="table">
               <tbody>
-                {todo.map((_todo) => (
+                {todoState.map((_todo) => (
                   <TodoComponent
                     key={_todo.id}
                     todo={_todo}
@@ -74,8 +74,8 @@ export class TodoListComponent extends React.Component<{
 }
 
 export default connect(
-  (state: IApplicationState) => ({
-    todo: todoSelectors.getTodo(state),
+  (state: DefaultRootState) => ({
+    todoState: todoSelectors.getCurrentState(state),
   }),
   (dispatch: Dispatch) => ({
     actions: bindActionCreators(bindTodoActions, dispatch),

@@ -2,11 +2,11 @@
 
 import { AnyAction, applyMiddleware, compose, createStore, Store } from "redux";
 import thunkMiddleware, { ThunkMiddleware } from "redux-thunk";
+import { DefaultRootState } from "react-redux";
 import rootReducer from "./rootReducer";
-import { IApplicationState } from "./state";
 
 export const middlewares = [
-  thunkMiddleware as ThunkMiddleware<IApplicationState, AnyAction>,
+  thunkMiddleware as ThunkMiddleware<DefaultRootState, AnyAction>,
 ];
 
 export const enhancers = [];
@@ -25,7 +25,7 @@ if (process.env.ENVIRONMENT === "client") {
 
 const makeStore = (
   initialState: object = {}
-): Store<IApplicationState, AnyAction> =>
+): Store<DefaultRootState, AnyAction> =>
   createStore(
     rootReducer,
     initialState,

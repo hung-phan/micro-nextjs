@@ -1,24 +1,28 @@
 import update from "immutability-helper";
+import { DefaultRootState } from "react-redux";
 import actionCreatorFactory from "typescript-fsa";
 import { reducerWithInitialState } from "typescript-fsa-reducers";
 import { asyncFactory, thunkToAction } from "typescript-fsa-redux-thunk";
 import { TodoModel } from "../../domain/model";
 import fetch from "../../library/fetch";
-import { IApplicationState, todoMountPoint, TodoState } from "../../state";
+
+export type State = TodoModel.Todo[];
+
+export const mountPoint = "todoState";
 
 export const selectors = {
-  getTodo: (state: IApplicationState): TodoState => state[todoMountPoint],
+  getCurrentState: (state: DefaultRootState): State => state[mountPoint],
 
-  _findById: (internalState: TodoState, id: string) =>
+  _findById: (internalState: State, id: string) =>
     internalState.find((todo) => todo.id === id),
 
-  _findIndexById: (internalState: TodoState, id: string) =>
+  _findIndexById: (internalState: State, id: string) =>
     internalState.findIndex((todo) => todo.id === id),
 };
 
-const actionCreator = actionCreatorFactory(todoMountPoint);
+const actionCreator = actionCreatorFactory(mountPoint);
 
-const asyncActionCreator = asyncFactory<IApplicationState>(actionCreator);
+const asyncActionCreator = asyncFactory<DefaultRootState>(actionCreator);
 
 export const actions = {
   create: asyncActionCreator<string, TodoModel.Todo>("CREATE", (text) =>
@@ -31,7 +35,10 @@ export const actions = {
   remove: asyncActionCreator<string, void>(
     "REMOVE",
     async (id, _dispatch, getState) => {
-      const todo = selectors._findById(selectors.getTodo(getState()), id);
+      const todo = selectors._findById(
+        selectors.getCurrentState(getState()),
+        id
+      );
 
       if (!todo) {
         return;
@@ -48,7 +55,10 @@ export const actions = {
   complete: asyncActionCreator<string, TodoModel.Todo>(
     "COMPLETE",
     async (id, _dispatch, getState) => {
-      const todo = selectors._findById(selectors.getTodo(getState()), id);
+      const todo = selectors._findById(
+        selectors.getCurrentState(getState()),
+        id
+      );
 
       if (!todo) {
         return;
@@ -65,7 +75,7 @@ export const actions = {
     }
   ),
 
-  fetch: asyncActionCreator<void, TodoState>("FETCH", () =>
+  fetch: asyncActionCreator<void, State>("FETCH", () =>
     fetch("/api/todo")
       .then((res) => res.json())
       .then((todoData: TodoModel.ITodo[]) =>
@@ -81,9 +91,9 @@ export const bindActions = {
   fetch: thunkToAction(actions.fetch.action),
 };
 
-export const reducer = reducerWithInitialState<TodoState>([])
+export const reducer = reducerWithInitialState<State>([])
   .case(actions.create.async.done, (state, action) =>
-    update<TodoState>(state, {
+    update<State>(state, {
       $push: [action.result],
     })
   )
@@ -94,7 +104,7 @@ export const reducer = reducerWithInitialState<TodoState>([])
       return state;
     }
 
-    return update<TodoState>(state, {
+    return update<State>(state, {
       $splice: [[todoIndex, 1]],
     });
   })
@@ -105,7 +115,7 @@ export const reducer = reducerWithInitialState<TodoState>([])
       return state;
     }
 
-    return update<TodoState>(state, {
+    return update<State>(state, {
       $splice: [
         [todoIndex, 1],
         [todoIndex, 0, action.result],
