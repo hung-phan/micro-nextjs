@@ -1,9 +1,7 @@
 import * as React from "react";
 import { bindActions as bindTodoActions } from "./logicBundle";
 
-function AddTodoComponent(props: {
-  addTodo: typeof bindTodoActions.create;
-}) {
+function AddTodoComponent(props: { addTodo: typeof bindTodoActions.create }) {
   const inputRef = React.useRef(null);
   const addTodo = async () => {
     // `current` points to the mounted text input element
@@ -25,11 +23,7 @@ function AddTodoComponent(props: {
             placeholder="Todo"
           />
         </div>
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={addTodo}
-        >
+        <button type="button" className="btn btn-success" onClick={addTodo}>
           Add Todo
         </button>
       </div>

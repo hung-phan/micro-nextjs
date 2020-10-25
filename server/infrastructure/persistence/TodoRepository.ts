@@ -8,10 +8,10 @@ import { TodoModel } from "../../../share/domain/model";
 let todoData: TodoModel.ITodo[] = _.range(10).map(() => ({
   id: faker.random.uuid(),
   complete: _.sample([true, false]),
-  text: faker.lorem.sentence()
+  text: faker.lorem.sentence(),
 }));
 
-const batchLoadFn: DataLoader.BatchLoadFn<string, TodoModel.Todo> = keys => {
+const batchLoadFn: DataLoader.BatchLoadFn<string, TodoModel.Todo> = (keys) => {
   const set = new Set(keys);
   const data = todoData
     .filter(({ id }) => set.has(id))
@@ -26,14 +26,12 @@ export const create = (text: string): Promise<TodoModel.Todo> => {
   const iTodo = {
     id: faker.random.uuid(),
     complete: false,
-    text
+    text,
   };
 
   todoData = todoData.concat([iTodo]);
 
-  return Promise.resolve(
-    new TodoModel.Todo(iTodo)
-  );
+  return Promise.resolve(new TodoModel.Todo(iTodo));
 };
 
 export const getAll = (): Promise<TodoModel.Todo[]> => {
@@ -45,10 +43,14 @@ export const getAll = (): Promise<TodoModel.Todo[]> => {
 export const getById = (id: string): Promise<TodoModel.Todo> =>
   dataloader.load(id);
 
-export const getByIds = (ids: string[]): Promise<Array<TodoModel.Todo | Error>> =>
-  dataloader.loadMany(ids);
+export const getByIds = (
+  ids: string[]
+): Promise<Array<TodoModel.Todo | Error>> => dataloader.loadMany(ids);
 
-export const update = (id: string, updates: TodoModel.ITodoUpdate): Promise<TodoModel.Todo> => {
+export const update = (
+  id: string,
+  updates: TodoModel.ITodoUpdate
+): Promise<TodoModel.Todo> => {
   const iTodo = todoData.find((todo: TodoModel.ITodo) => id === todo.id);
 
   if (!iTodo) {
@@ -59,9 +61,7 @@ export const update = (id: string, updates: TodoModel.ITodoUpdate): Promise<Todo
 
   dataloader.clear(id);
 
-  return Promise.resolve(
-    new TodoModel.Todo(iTodo)
-  );
+  return Promise.resolve(new TodoModel.Todo(iTodo));
 };
 
 export const remove = (id: string): void => {

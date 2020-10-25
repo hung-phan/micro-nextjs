@@ -8,7 +8,7 @@ import AddTodoComponent from "./AddTodoComponent";
 import {
   actions as todoActions,
   bindActions as bindTodoActions,
-  selectors as todoSelectors
+  selectors as todoSelectors,
 } from "./logicBundle";
 import TodoComponent from "./TodoComponent";
 
@@ -18,7 +18,7 @@ export class TodoListComponent extends React.Component<{
 }> {
   public static async getInitialProps({
     pathname,
-    store
+    store,
   }: {
     pathname: string;
     store: Store<IApplicationState, AnyAction>;
@@ -45,7 +45,7 @@ export class TodoListComponent extends React.Component<{
           <div className="col-md-12">
             <table className="table">
               <tbody>
-                {todo.map(_todo => (
+                {todo.map((_todo) => (
                   <TodoComponent
                     key={_todo.id}
                     todo={_todo}
@@ -75,9 +75,9 @@ export class TodoListComponent extends React.Component<{
 
 export default connect(
   (state: IApplicationState) => ({
-    todo: todoSelectors.getTodo(state)
+    todo: todoSelectors.getTodo(state),
   }),
   (dispatch: Dispatch) => ({
-    actions: bindActionCreators(bindTodoActions, dispatch)
+    actions: bindActionCreators(bindTodoActions, dispatch),
   })
 )(TodoListComponent);

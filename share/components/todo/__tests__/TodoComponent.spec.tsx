@@ -8,17 +8,13 @@ describe("todo/TodoComponent", () => {
   const todo: TodoModel.Todo = new TodoModel.Todo({
     id: "0",
     text: "Todo",
-    complete: false
+    complete: false,
   });
 
   it("should call 'removeTodo' when click on the delete button", () => {
     const removeTodo = jest.fn();
     const component = shallow(
-      <TodoComponent
-        todo={todo}
-        remove={removeTodo}
-        complete={noop as any}
-      />
+      <TodoComponent todo={todo} remove={removeTodo} complete={noop as any} />
     );
     const removeButton = component.find(".btn-danger");
     removeButton.simulate("click");
@@ -29,11 +25,7 @@ describe("todo/TodoComponent", () => {
   it("should call 'completeTodo' when click on the complete button", () => {
     const completeTodo = jest.fn();
     const component = shallow(
-      <TodoComponent
-        todo={todo}
-        remove={noop as any}
-        complete={completeTodo}
-      />
+      <TodoComponent todo={todo} remove={noop as any} complete={completeTodo} />
     );
     const completeButton = component.find(".btn-success");
     completeButton.simulate("click");

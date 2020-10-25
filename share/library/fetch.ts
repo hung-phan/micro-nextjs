@@ -17,11 +17,11 @@ export const create = (baseUrl: string) => (
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      ...(options && options.headers)
+      ...(options && options.headers),
     },
     mode: baseUrl ? "cors" : "same-origin",
     credentials: baseUrl ? "include" : "same-origin",
-    ..._.omit(options, "headers")
+    ..._.omit(options, "headers"),
   });
 
 export default create(BASE_URL);

@@ -16,8 +16,8 @@ describe("todo/TodoList", () => {
           { id: "1", text: "Todo 1", complete: false },
           { id: "2", text: "Todo 2", complete: false },
           { id: "3", text: "Todo 3", complete: false },
-          { id: "4", text: "Todo 4", complete: false }
-        ]
+          { id: "4", text: "Todo 4", complete: false },
+        ],
       })
     );
   });

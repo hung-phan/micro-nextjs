@@ -10,10 +10,10 @@ export const selectors = {
   getTodo: (state: IApplicationState): TodoState => state[todoMountPoint],
 
   _findById: (internalState: TodoState, id: string) =>
-    internalState.find(todo => todo.id === id),
+    internalState.find((todo) => todo.id === id),
 
   _findIndexById: (internalState: TodoState, id: string) =>
-    internalState.findIndex(todo => todo.id === id)
+    internalState.findIndex((todo) => todo.id === id),
 };
 
 const actionCreator = actionCreatorFactory(todoMountPoint);
@@ -21,11 +21,11 @@ const actionCreator = actionCreatorFactory(todoMountPoint);
 const asyncActionCreator = asyncFactory<IApplicationState>(actionCreator);
 
 export const actions = {
-  create: asyncActionCreator<string, TodoModel.Todo>("CREATE", text =>
+  create: asyncActionCreator<string, TodoModel.Todo>("CREATE", (text) =>
     fetch("/api/todo", {
       method: "POST",
-      body: JSON.stringify({ text })
-    }).then(res => res.json())
+      body: JSON.stringify({ text }),
+    }).then((res) => res.json())
   ),
 
   remove: asyncActionCreator<string, void>(
@@ -57,8 +57,8 @@ export const actions = {
       const result = await fetch(`/api/todo/${id}`, {
         method: "PUT",
         body: JSON.stringify({
-          complete: !todo.complete
-        })
+          complete: !todo.complete,
+        }),
       });
 
       return result.json();
@@ -67,11 +67,11 @@ export const actions = {
 
   fetch: asyncActionCreator<void, TodoState>("FETCH", () =>
     fetch("/api/todo")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((todoData: TodoModel.ITodo[]) =>
         todoData.map((opts: TodoModel.ITodo) => new TodoModel.Todo(opts))
       )
-  )
+  ),
 };
 
 export const bindActions = {
@@ -84,7 +84,7 @@ export const bindActions = {
 export const reducer = reducerWithInitialState<TodoState>([])
   .case(actions.create.async.done, (state, action) =>
     update<TodoState>(state, {
-      $push: [action.result]
+      $push: [action.result],
     })
   )
   .case(actions.remove.async.done, (state, action) => {
@@ -95,7 +95,7 @@ export const reducer = reducerWithInitialState<TodoState>([])
     }
 
     return update<TodoState>(state, {
-      $splice: [[todoIndex, 1]]
+      $splice: [[todoIndex, 1]],
     });
   })
   .case(actions.complete.async.done, (state, action) => {
@@ -106,7 +106,10 @@ export const reducer = reducerWithInitialState<TodoState>([])
     }
 
     return update<TodoState>(state, {
-      $splice: [[todoIndex, 1], [todoIndex, 0, action.result]]
+      $splice: [
+        [todoIndex, 1],
+        [todoIndex, 0, action.result],
+      ],
     });
   })
   .case(actions.fetch.async.done, (_state, action) => action.result)

@@ -22,7 +22,11 @@ export const httpServer = micro(
 
       // offline caching
       get("/service-worker.js", (req, res) =>
-        nextApplication.serveStatic(req, res, `${process.cwd()}/.next/static/service-worker.js`)
+        nextApplication.serveStatic(
+          req,
+          res,
+          `${process.cwd()}/.next/static/service-worker.js`
+        )
       ),
 
       // SPA

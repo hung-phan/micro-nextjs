@@ -25,10 +25,10 @@ export class Todo implements ITodo {
 
 export const validator = {
   TodoCreate: object({
-    text: string()
+    text: string(),
   }),
   TodoUpdate: object({
     text: optional(string()),
-    complete: optional(boolean())
-  })
+    complete: optional(boolean()),
+  }),
 };

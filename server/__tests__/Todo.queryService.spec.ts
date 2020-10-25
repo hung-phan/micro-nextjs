@@ -9,7 +9,7 @@ beforeAll(() => {
     .post("/api/todo")
     .send({ text: "New Todo" })
     .set("Accept", "application/json")
-    .then(res => {
+    .then((res) => {
       todo = res.body;
     });
 });
@@ -19,7 +19,7 @@ test(".getAll()", () => {
     .get("/api/todo")
     .set("Accept", "application/json")
     .expect(200)
-    .then(res => {
+    .then((res) => {
       expect(res.body).toBeDefined();
     });
 });
@@ -29,7 +29,7 @@ test(".getById()", () => {
     .get(`/api/todo/${todo.id}`)
     .set("Accept", "application/json")
     .expect(200)
-    .then(res => {
+    .then((res) => {
       expect(res.body).toBeDefined();
     });
 });
@@ -40,11 +40,11 @@ test(".update()", () => {
     .send({ text: "Newer Todo", complete: true })
     .set("Accept", "application/json")
     .expect(200)
-    .then(res => {
+    .then((res) => {
       expect(res.body).toEqual({
         id: todo.id,
         text: "Newer Todo",
-        complete: true
+        complete: true,
       });
     });
 });
@@ -54,7 +54,7 @@ test(".remove()", () => {
     .del(`/api/todo/${todo.id}`)
     .set("Accept", "application/json")
     .expect(204)
-    .then(res => {
+    .then((res) => {
       expect(res.body).toEqual({});
     });
 });
