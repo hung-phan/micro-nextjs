@@ -1,4 +1,4 @@
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 import { noop } from "lodash";
 import * as React from "react";
 import { TodoModel } from "../../../domain/model";
@@ -13,16 +13,12 @@ describe("todo/TodoComponent", () => {
 
   it("should call 'removeTodo' when click on the delete button", () => {
     const removeTodo = jest.fn();
-    const component = mount(
-      <table className="table">
-        <tbody>
-          <TodoComponent
-            todo={todo}
-            remove={removeTodo}
-            complete={noop as any}
-          />
-        </tbody>
-      </table>
+    const component = shallow(
+      <TodoComponent
+        todo={todo}
+        remove={removeTodo}
+        complete={noop as any}
+      />
     );
     const removeButton = component.find(".btn-danger");
     removeButton.simulate("click");
@@ -32,16 +28,12 @@ describe("todo/TodoComponent", () => {
 
   it("should call 'completeTodo' when click on the complete button", () => {
     const completeTodo = jest.fn();
-    const component = mount(
-      <table className="table">
-        <tbody>
-        <TodoComponent
-          todo={todo}
-          remove={noop as any}
-          complete={completeTodo}
-        />
-        </tbody>
-      </table>
+    const component = shallow(
+      <TodoComponent
+        todo={todo}
+        remove={noop as any}
+        complete={completeTodo}
+      />
     );
     const completeButton = component.find(".btn-success");
     completeButton.simulate("click");
