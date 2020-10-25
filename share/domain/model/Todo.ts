@@ -24,11 +24,6 @@ export class Todo implements ITodo {
 }
 
 export const validator = {
-  Todo: object({
-    id: optional(string()),
-    text: string(),
-    complete: boolean()
-  }),
   TodoCreate: object({
     text: string()
   }),
