@@ -7,8 +7,12 @@ import App from "next/app";
 import Head from "next/head";
 import * as React from "react";
 import { Provider } from "react-redux";
-import { Store } from "redux";
-import createStore from "../share/createStore";
+import { combineReducers, Store } from "redux";
+import makeStore from "../share/makeStore";
+import {
+  mountPoint as todoMountPoint,
+  reducer as todoReducer,
+} from "../share/components/todo/logicBundle";
 
 class MyApp extends App<{ store: Store }> {
   public render() {
@@ -27,4 +31,10 @@ class MyApp extends App<{ store: Store }> {
   }
 }
 
-export default withRedux(createStore)(MyApp);
+export default withRedux(
+  makeStore(
+    combineReducers({
+      [todoMountPoint]: todoReducer,
+    })
+  )
+)(MyApp);
