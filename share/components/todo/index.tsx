@@ -1,11 +1,9 @@
 import Link from "next/link";
 import * as React from "react";
 import { connect, DefaultRootState } from "react-redux";
-import { AnyAction, bindActionCreators, Dispatch, Store } from "redux";
-import { ThunkDispatch } from "redux-thunk";
+import { bindActionCreators, Dispatch } from "redux";
 import AddTodoComponent from "./AddTodoComponent";
 import {
-  actions as todoActions,
   bindActions as bindTodoActions,
   selectors as todoSelectors,
   State,
@@ -16,20 +14,6 @@ export class TodoListComponent extends React.Component<{
   todoState: State;
   actions: typeof bindTodoActions;
 }> {
-  public static async getInitialProps({
-    pathname,
-    store,
-  }: {
-    pathname: string;
-    store: Store<DefaultRootState, AnyAction>;
-  }) {
-    await (store.dispatch as ThunkDispatch<DefaultRootState, any, AnyAction>)(
-      todoActions.fetch.action()
-    );
-
-    return { pathname };
-  }
-
   public render() {
     const { todoState, actions } = this.props;
 

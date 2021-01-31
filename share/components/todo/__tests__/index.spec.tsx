@@ -2,19 +2,14 @@ import { render } from "enzyme";
 import * as React from "react";
 import { Provider } from "react-redux";
 import TodoList from "..";
-import makeStore from "../../../makeStore";
-import { actions, mountPoint, reducer } from "../logicBundle";
-import { combineReducers } from "redux";
+import {makeStore} from "../../../store";
+import { actions } from "../logicBundle";
 
 describe("todo/TodoList", () => {
   let store;
 
   beforeEach(() => {
-    store = makeStore(
-      combineReducers({
-        [mountPoint]: reducer,
-      })
-    )();
+    store = makeStore(null);
     store.dispatch(
       actions.fetch.async.done({
         result: [
