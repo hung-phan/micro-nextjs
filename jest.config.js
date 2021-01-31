@@ -1,8 +1,6 @@
 module.exports = {
   setupFiles: ["<rootDir>/jest.setup.js"],
   snapshotSerializers: ["enzyme-to-json/serializer"],
-  testURL: `http://localhost:${process.env.PORT}/`,
-  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   transform: {
     "^.+\\.ts$": "ts-jest",
     "^.+\\.tsx$": "babel-jest"
