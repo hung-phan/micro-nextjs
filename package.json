@@ -8,7 +8,7 @@
     "immutability-helper": "^3.1.1",
     "isomorphic-fetch": "^3.0.0",
     "jquery": "^3.5.1",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "micro": "^9.3.4",
     "micro-boom": "^2.0.0",
     "microrouter": "^3.1.3",
