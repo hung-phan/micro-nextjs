@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === "production") {
 
 module.exports = _.flow(...plugins)({
   workboxOpts: {
-    swDest: 'static/service-worker.js',
+    swDest: "static/service-worker.js",
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
@@ -20,18 +20,18 @@ module.exports = _.flow(...plugins)({
           networkTimeoutSeconds: 15,
           expiration: {
             maxEntries: 150,
-            maxAgeSeconds: 24 * 60 * 60 // 1 day
+            maxAgeSeconds: 24 * 60 * 60, // 1 day
           },
           cacheableResponse: {
-            statuses: [0, 200]
-          }
-        }
-      }
-    ]
+            statuses: [0, 200],
+          },
+        },
+      },
+    ],
   },
 
   serverRuntimeConfig: {
-    IS_SERVER: true
+    IS_SERVER: true,
   },
 
   webpack(config, { isServer }) {
@@ -42,30 +42,21 @@ module.exports = _.flow(...plugins)({
           loader: "file-loader",
           options: {
             publicPath: "/_next/static/images",
-            outputPath: "static/images"
-          }
-        }
-      ]
+            outputPath: "static/images",
+          },
+        },
+      ],
     });
-
-    // Optimize output css
-    if (
-      config.mode === "production" &&
-      Array.isArray(config.optimization.minimizer)
-    ) {
-      const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-      config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin());
-    }
 
     // compile time config
     config.plugins.push(
       new webpack.DefinePlugin({
         "process.env.ENVIRONMENT": JSON.stringify(
           isServer ? "server" : "client"
-        )
+        ),
       })
     );
 
     return config;
-  }
+  },
 });

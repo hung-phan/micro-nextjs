@@ -4,6 +4,7 @@ import {
   compose,
   combineReducers,
   createStore,
+  Store,
 } from "redux";
 import { Context, createWrapper, HYDRATE, MakeStore } from "next-redux-wrapper";
 import {
@@ -40,7 +41,7 @@ const applicationReducer = combineReducers({
   [todoMountPoint]: todoReducer,
 });
 
-export const makeStore: MakeStore<RootState> = (_: Context) =>
+export const makeStore: MakeStore<Store<RootState>> = (_: Context) =>
   createStore(
     (state: RootState, action: AnyAction) => {
       switch (action.type) {
@@ -54,7 +55,7 @@ export const makeStore: MakeStore<RootState> = (_: Context) =>
     compose(applyMiddleware(...middlewares), ...enhancers)
   );
 
-export const wrapper = createWrapper<RootState>(makeStore, {
+export const wrapper = createWrapper<Store<RootState>>(makeStore, {
   serializeState: JSON.stringify,
-  deserializeState: JSON.parse
+  deserializeState: JSON.parse,
 });

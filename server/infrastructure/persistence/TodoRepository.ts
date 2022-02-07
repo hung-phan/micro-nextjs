@@ -1,15 +1,20 @@
 import * as Boom from "boom";
 import DataLoader from "dataloader";
-import * as faker from "faker";
 import * as _ from "lodash";
 import { TodoModel } from "../../../share/domain/model";
 
+let currentId = 0;
+
 // fake data
-let todoData: TodoModel.ITodo[] = _.range(10).map(() => ({
-  id: faker.random.uuid(),
-  complete: _.sample([true, false]),
-  text: faker.lorem.sentence(),
-}));
+let todoData: TodoModel.ITodo[] = _.range(10).map(() => {
+  const newId = `${++currentId}`;
+
+  return {
+    id: newId,
+    complete: _.sample([true, false]),
+    text: `Random sentence ${newId}`,
+  };
+});
 
 const batchLoadFn: DataLoader.BatchLoadFn<string, TodoModel.Todo> = (keys) => {
   const set = new Set(keys);
@@ -24,7 +29,7 @@ const dataloader = new DataLoader(batchLoadFn);
 
 export const create = (text: string): Promise<TodoModel.Todo> => {
   const iTodo = {
-    id: faker.random.uuid(),
+    id: `${++currentId}`,
     complete: false,
     text,
   };
@@ -45,7 +50,7 @@ export const getById = (id: string): Promise<TodoModel.Todo> =>
 
 export const getByIds = (
   ids: string[]
-): Promise<Array<TodoModel.Todo | Error>> => dataloader.loadMany(ids);
+): Promise<(TodoModel.Todo | Error)[]> => dataloader.loadMany(ids);
 
 export const update = (
   id: string,
