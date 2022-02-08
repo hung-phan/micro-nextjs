@@ -5,7 +5,7 @@ import { DefaultRootState } from "react-redux";
 import { AnyAction } from "redux";
 import { actions as todoActions } from "../share/components/todo/logicBundle";
 
-export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
   await (store.dispatch as ThunkDispatch<DefaultRootState, any, AnyAction>)(
     todoActions.fetch.action()
   );
