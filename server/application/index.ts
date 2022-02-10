@@ -20,15 +20,6 @@ export const httpServer = micro(
         del("/:id", Todo.queryService.remove)
       ),
 
-      // offline caching
-      get("/service-worker.js", (req, res) =>
-        nextApplication.serveStatic(
-          req,
-          res,
-          `${process.cwd()}/.next/static/service-worker.js`
-        )
-      ),
-
       // SPA
       get("/*", nextApplication.getRequestHandler())
     )

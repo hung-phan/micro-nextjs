@@ -1,33 +1,16 @@
 const _ = require("lodash");
 const webpack = require("webpack");
-const withOffline = require("next-offline");
+const withPWA = require("next-pwa");
 
 const plugins = [];
 
 if (process.env.NODE_ENV === "production") {
-  plugins.unshift(withOffline);
+  plugins.unshift(withPWA);
 }
 
 module.exports = _.flow(...plugins)({
-  workboxOpts: {
-    swDest: "static/service-worker.js",
-    runtimeCaching: [
-      {
-        urlPattern: /^https?.*/,
-        handler: "NetworkFirst",
-        options: {
-          cacheName: "http-calls",
-          networkTimeoutSeconds: 15,
-          expiration: {
-            maxEntries: 150,
-            maxAgeSeconds: 24 * 60 * 60, // 1 day
-          },
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
-        },
-      },
-    ],
+  pwa: {
+    dest: "public",
   },
 
   serverRuntimeConfig: {
