@@ -13,13 +13,13 @@ exports[`Component: StaticPage should render component 1`] = `
       <h1>
         Static Page
       </h1>
-      <Link
+      <ForwardRef
         href="/"
       >
         <a>
           Back to Home page
         </a>
-      </Link>
+      </ForwardRef>
     </div>
   </div>
 </div>
