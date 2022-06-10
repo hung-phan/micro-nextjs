@@ -1,6 +1,7 @@
 import { shallow } from "enzyme";
 import { noop } from "lodash";
 import * as React from "react";
+
 import { TodoModel } from "../../../domain/model";
 import TodoComponent from "../TodoComponent";
 

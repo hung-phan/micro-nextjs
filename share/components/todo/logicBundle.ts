@@ -3,6 +3,7 @@ import { DefaultRootState } from "react-redux";
 import actionCreatorFactory from "typescript-fsa";
 import { reducerWithInitialState } from "typescript-fsa-reducers";
 import { asyncFactory, thunkToAction } from "typescript-fsa-redux-thunk";
+
 import { TodoModel } from "../../domain/model";
 import fetch from "../../library/fetch";
 

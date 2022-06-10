@@ -1,6 +1,7 @@
-import { FC } from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
+import { FC } from "react";
+
 import { wrapper } from "../share/store";
 
 if (process.env.ENVIRONMENT === "client") {

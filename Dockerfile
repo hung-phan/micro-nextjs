@@ -18,5 +18,6 @@ RUN npm install --production
 COPY . .
 COPY --from=builder /opt/application/.next .next
 COPY --from=builder /opt/application/.next_server .next_server
+COPY --from=builder /opt/application/public public
 
 CMD ["dumb-init", "npm", "start"]

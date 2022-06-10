@@ -1,7 +1,8 @@
 import * as Boom from "boom";
 import { MicroIncomingMessage, ServerResponse } from "http";
-import { assert } from "superstruct";
 import { json, send } from "micro";
+import { assert } from "superstruct";
+
 import { TodoModel } from "../../../share/domain/model";
 import { TodoRepository } from "../../infrastructure/persistence";
 

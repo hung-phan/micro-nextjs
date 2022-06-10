@@ -1,4 +1,5 @@
 import { boolean, object, optional, string } from "superstruct";
+
 import IEntity from "../IEntity";
 
 export interface ITodo extends IEntity {

@@ -1,14 +1,15 @@
 import Link from "next/link";
 import * as React from "react";
-import { connect, DefaultRootState } from "react-redux";
-import { bindActionCreators, Dispatch } from "redux";
+import { DefaultRootState, connect } from "react-redux";
+import { Dispatch, bindActionCreators } from "redux";
+
 import AddTodoComponent from "./AddTodoComponent";
+import TodoComponent from "./TodoComponent";
 import {
+  State,
   bindActions as bindTodoActions,
   selectors as todoSelectors,
-  State,
 } from "./logicBundle";
-import TodoComponent from "./TodoComponent";
 
 export class TodoListComponent extends React.Component<{
   todoState: State;

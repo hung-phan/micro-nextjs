@@ -1,6 +1,7 @@
 import * as Boom from "boom";
 import DataLoader from "dataloader";
 import * as _ from "lodash";
+
 import { TodoModel } from "../../../share/domain/model";
 
 let currentId = 0;
@@ -48,9 +49,8 @@ export const getAll = (): Promise<TodoModel.Todo[]> => {
 export const getById = (id: string): Promise<TodoModel.Todo> =>
   dataloader.load(id);
 
-export const getByIds = (
-  ids: string[]
-): Promise<(TodoModel.Todo | Error)[]> => dataloader.loadMany(ids);
+export const getByIds = (ids: string[]): Promise<(TodoModel.Todo | Error)[]> =>
+  dataloader.loadMany(ids);
 
 export const update = (
   id: string,

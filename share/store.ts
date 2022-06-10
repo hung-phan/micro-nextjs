@@ -1,19 +1,20 @@
+import { Context, HYDRATE, MakeStore, createWrapper } from "next-redux-wrapper";
+import { DefaultRootState } from "react-redux";
 import {
   AnyAction,
-  applyMiddleware,
-  compose,
-  combineReducers,
-  createStore,
   Store,
+  applyMiddleware,
+  combineReducers,
+  compose,
+  createStore,
 } from "redux";
-import { Context, createWrapper, HYDRATE, MakeStore } from "next-redux-wrapper";
+import thunkMiddleware, { ThunkMiddleware } from "redux-thunk";
+
 import {
+  State as TodoState,
   mountPoint as todoMountPoint,
   reducer as todoReducer,
-  State as TodoState,
 } from "../share/components/todo/logicBundle";
-import thunkMiddleware, { ThunkMiddleware } from "redux-thunk";
-import { DefaultRootState } from "react-redux";
 
 export const middlewares = [
   thunkMiddleware as ThunkMiddleware<DefaultRootState, AnyAction>,

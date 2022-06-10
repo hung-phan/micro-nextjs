@@ -1,8 +1,9 @@
 import { render } from "enzyme";
 import * as React from "react";
 import { Provider } from "react-redux";
+
 import TodoList from "..";
-import {makeStore} from "../../../store";
+import { makeStore } from "../../../store";
 import { actions } from "../logicBundle";
 
 describe("todo/TodoList", () => {
