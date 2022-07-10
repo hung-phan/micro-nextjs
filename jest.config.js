@@ -9,7 +9,6 @@ const customJestConfig = {
   snapshotSerializers: ["enzyme-to-json/serializer"],
   testPathIgnorePatterns: [
     "<rootDir>/.next/",
-    "<rootDir>/.next_server/",
     "<rootDir>/node_modules/",
   ],
   collectCoverage: true,

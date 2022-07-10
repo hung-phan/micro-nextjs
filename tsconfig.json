@@ -27,7 +27,6 @@
   },
   "exclude": [
     ".next",
-    ".next_server",
     "next.config.js",
     "**/*.spec.ts",
     "**/*.spec.tsx"

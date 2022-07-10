@@ -47,7 +47,6 @@ jspm_packages/
 
 # next.js build output
 .next
-.next_server
 
 public/sw.js
 public/workbox-*.js

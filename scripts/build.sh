@@ -3,4 +3,3 @@
 source $(dirname "$0")/env/production.sh
 npm run clean
 next build
-tsc --project tsconfig.server.json
