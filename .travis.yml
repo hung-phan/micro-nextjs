@@ -2,6 +2,9 @@ sudo: required
 
 language: node_js
 
+node_js:
+  - 16
+
 cache:
   directories:
   - node_modules
